@@ -50,8 +50,8 @@ An editorial, futuristic, single-page developer portfolio centered around an int
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/your-username/liquid-reveal-portfolio.git
-cd liquid-reveal-portfolio
+git clone https://github.com/DSMohamed/Portofolio.git
+cd Portofolio
 ```
 
 ### 2. Install dependencies
