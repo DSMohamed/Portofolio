@@ -65,25 +65,24 @@ export const Contact: React.FC = () => {
   };
 
   const socialLinks = [
-    { name: 'GitHub', url: personalInfo.github, icon: 'Github', handle: '@mohamed-dev' },
-    { name: 'LinkedIn', url: personalInfo.linkedin, icon: 'Linkedin', handle: 'in/mohamed-works' },
-    { name: 'X (Twitter)', url: personalInfo.twitter, icon: 'Twitter', handle: '@mohamed_tech' },
+    { name: 'GitHub', url: personalInfo.github, icon: 'Github', handle: '@DSMohamed' },
+    { name: 'LinkedIn', url: personalInfo.linkedin, icon: 'Linkedin', handle: 'in/Mohamed Khaled Elsafoury' },
+    { name: 'X (Twitter)', url: personalInfo.twitter, icon: 'Twitter', handle: 'N/A' },
     { name: 'Email', url: `mailto:${personalInfo.email}`, icon: 'Mail', handle: personalInfo.email },
   ];
 
   return (
     <section id="contact" className="relative py-28 sm:py-36 bg-[#08080a] overflow-hidden">
       {/* Background Glow */}
-      <div 
-        className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-96 bg-amber-500/10 rounded-full blur-[120px] pointer-events-none" 
-        aria-hidden="true" 
+      <div
+        className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-96 bg-amber-500/10 rounded-full blur-[120px] pointer-events-none"
+        aria-hidden="true"
       />
 
       <div
         ref={elementRef}
-        className={`max-w-7xl mx-auto px-6 sm:px-12 lg:px-16 transition-all duration-1000 ${
-          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-        }`}
+        className={`max-w-7xl mx-auto px-6 sm:px-12 lg:px-16 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}
       >
         {/* Section Header */}
         <div className="flex flex-col mb-16 max-w-3xl">
@@ -103,11 +102,11 @@ export const Contact: React.FC = () => {
 
         {/* Two-Column Grid: Form & Channels */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
-          
+
           {/* Left Column: Form (7 cols) */}
           <div className="lg:col-span-7">
             <div className="p-8 sm:p-10 rounded-3xl bg-[#0c0c11] border border-white/[0.08] shadow-2xl shadow-black/80">
-              
+
               {formStatus === 'success' ? (
                 <div className="py-12 flex flex-col items-center justify-center text-center space-y-4">
                   <div className="w-16 h-16 rounded-full bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
@@ -128,7 +127,7 @@ export const Contact: React.FC = () => {
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-6">
-                  
+
                   {formStatus === 'error' && (
                     <div className="p-4 rounded-xl bg-red-500/10 border border-red-500/30 text-red-300 text-xs font-mono">
                       {errorMessage}
@@ -231,7 +230,7 @@ export const Contact: React.FC = () => {
 
           {/* Right Column: Direct Channels & Telemetry (5 cols) */}
           <div className="lg:col-span-5 space-y-8">
-            
+
             {/* Direct Email Card */}
             <div className="p-8 rounded-3xl bg-[#0d0d12] border border-white/[0.08] space-y-4">
               <div className="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400">

@@ -8,10 +8,10 @@ export const PERSONAL_INFO = {
   bio: "Creative technologist and full-stack engineer operating at the convergence of high-performance web architecture, modern machine learning systems, and expressive interactive design. Focused on building software that is mathematically precise and aesthetically breathtaking.",
   location: "Cairo, Egypt — Available Worldwide",
   availability: "Available for high-impact roles & creative engineering",
-  email: "mohamed@workstation.dev",
-  github: "https://github.com/mohamed-dev",
-  linkedin: "https://linkedin.com/in/mohamed-works",
-  twitter: "https://x.com/mohamed_tech",
+  email: "mohamedbuisness2@gmail.com",
+  github: "https://github.com/DSMohamed",
+  linkedin: "https://linkedin.com/in/mohamed-khaled-elsafoury-8a7124280",
+  twitter: "https://x.com/N/A",
 };
 
 export const STATS: StatItem[] = [
@@ -335,26 +335,26 @@ export const SERVICES: ServiceItem[] = [
 export const SOCIAL_LINKS: SocialLink[] = [
   {
     name: "GitHub",
-    url: "https://github.com/mohamed-dev",
+    url: "https://github.com/DSMohamed",
     icon: "Github",
-    handle: "@mohamed-dev"
+    handle: "@DSMohamed"
   },
   {
     name: "LinkedIn",
-    url: "https://linkedin.com/in/mohamed-works",
+    url: "https://linkedin.com/in/mohamed-khaled-elsafoury-8a7124280",
     icon: "Linkedin",
-    handle: "in/mohamed-works"
+    handle: "in/mohamed-khaled-elsafoury-8a7124280"
   },
   {
     name: "X (Twitter)",
-    url: "https://x.com/mohamed_tech",
+    url: "https://x.com/N/A",
     icon: "Twitter",
-    handle: "@mohamed_tech"
+    handle: "N/A"
   },
   {
     name: "Email",
-    url: "mailto:mohamed@workstation.dev",
+    url: "mailto:mohamedbuisness2@gmail.com",
     icon: "Mail",
-    handle: "mohamed@workstation.dev"
+    handle: "mohamedbuisness2@gmail.com"
   }
 ];
