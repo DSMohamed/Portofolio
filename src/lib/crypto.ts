@@ -2,7 +2,6 @@
  * Secure SHA-256 Password Hashing Utility using the native Web Crypto API
  */
 
-// Pre-computed SHA-256 hash of the default initial password ("admin123")
 export const DEFAULT_ADMIN_HASH = '240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9';
 
 export async function hashPassword(plainText: string): Promise<string> {

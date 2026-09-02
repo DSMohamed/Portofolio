@@ -163,6 +163,7 @@ npx wrangler pages deploy dist --project-name your-project-name
 - **Environment Variables**: `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY`
 
 ---
+Live URL:https://mohamedkhaled-5hl.pages.dev/
 
 ## 📄 License
 
