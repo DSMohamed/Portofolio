@@ -21,14 +21,14 @@ const PERSONAL_INFO = {
 
 const STATS = [
   {
-    value: "25+",
+    value: "30+",
     label: "Projects Shipped",
-    description: "Production web applications, local neural models, and AI agent frameworks."
+    description: "Production client platforms, local neural models, and AI agent frameworks."
   },
   {
-    value: "3+",
-    label: "Years Engineering",
-    description: "Hands-on craft across React, TypeScript, Python, PyTorch, and cloud platforms."
+    value: "10k+",
+    label: "Active Students",
+    description: "High-traffic commercial biology and geography e-learning platforms across Egypt."
   },
   {
     value: "100%",
@@ -44,6 +44,56 @@ const STATS = [
 
 const PROJECTS = [
   {
+    id: "elsultan-academy",
+    title: "ElSultan Academy (Geography)",
+    category: "fullstack",
+    categoryLabel: "Full Stack",
+    tagline: "Commercial e-learning web platform & multi-gateway payment ecosystem for secondary geography",
+    description: "Commercial education web platform developed for Mr. Ahmed Sultan's secondary geography academy. Features automated Egyptian payment gateway webhooks via Paymob, Supabase PostgreSQL database, custom video player integration, and automated student progress tracking.",
+    longDescription: "A proprietary production client platform engineered with modern React, Vite, Tailwind CSS, and a Supabase PostgreSQL backend. Features Paymob webhook verification, automated student wallet activation, comprehensive course/exam catalogs with interactive grading, and custom security headers to protect digital educational material.",
+    image: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=1200&auto=format&fit=crop",
+    tags: ["React", "TypeScript", "Tailwind CSS", "Supabase", "PostgreSQL", "Paymob", "Vite", "Node.js"],
+    githubUrl: "",
+    liveUrl: "https://elsultanacademy.com",
+    featured: true,
+    highlights: [
+      "Commercial Client Platform: Built for Mr. Ahmed Sultan's geography students across secondary education",
+      "Automated Egyptian Payments: Real-time Paymob payment processing with instant wallet and course access",
+      "Supabase PostgreSQL Architecture: Relational database schema for student enrollments and test analytics",
+      "Production domain deployed at elsultanacademy.com with enterprise security headers and CSP"
+    ],
+    metrics: [
+      { label: "Client Platform", value: "Commercial" },
+      { label: "Domain", value: "elsultanacademy.com" },
+      { label: "Database", value: "Supabase SQL" }
+    ]
+  },
+  {
+    id: "dr-biology-academy",
+    title: "DrBiology Academy",
+    category: "fullstack",
+    categoryLabel: "Full Stack",
+    tagline: "High-traffic biology academy with anti-piracy DRM video streaming & native Android TWA app",
+    description: "Full-scale commercial e-learning ecosystem built for Dr. Mostafa Khaled's biology academy (American Diploma & Thanawya Amma). Features encrypted VdoCipher DRM video streaming via Cloudflare Workers, Paymob & Kashier payments, and a published Android app.",
+    longDescription: "Engineered to deliver secure biology curriculum with zero content piracy. Built with React, Vite, Tailwind CSS, and Firebase Realtime Database. Integrates Cloudflare Workers to proxy encrypted VdoCipher dynamic OTP watermarked streams, automated Kashier and Paymob payment reconciliation, and a Trusted Web Activity (TWA) bundle published for native Android distribution.",
+    image: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=1200&auto=format&fit=crop",
+    tags: ["React", "TypeScript", "Tailwind CSS", "Firebase", "Paymob", "Kashier", "Capacitor", "Cloudflare Workers", "VdoCipher"],
+    githubUrl: "",
+    liveUrl: "https://drbiologyacademy.pages.dev",
+    featured: true,
+    highlights: [
+      "Commercial Client Platform: Built for Dr. Mostafa Khaled's biology curriculum (American Diploma & Thanawya Amma)",
+      "Anti-Piracy DRM: Cloudflare Worker proxying encrypted VdoCipher dynamic OTP watermarked streams",
+      "Dual Payment Gateways: Seamless Paymob & Kashier automated checkout and instant enrollments",
+      "Native Android distribution built via Capacitor & TWA with sub-2.5s LCP loading optimization"
+    ],
+    metrics: [
+      { label: "Client Platform", value: "Commercial" },
+      { label: "Mobile", value: "Android TWA" },
+      { label: "Video DRM", value: "VdoCipher" }
+    ]
+  },
+  {
     id: "local-ai-gaming-companion",
     title: "Local AI Gaming Companion",
     category: "ai",
@@ -53,7 +103,7 @@ const PROJECTS = [
     longDescription: "Engineered from the ground up for zero cloud dependencies and low latency. Utilizes faster-whisper with Voice Activity Detection (VAD) for instant STT, Ollama abstraction supporting llama3.2:3b and qwen2.5:7b, neural voice synthesis with natural voice interruptions, and SQLite vector memory.",
     image: "https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1200&auto=format&fit=crop",
     tags: ["Python", "faster-whisper", "Ollama", "PyTorch", "OpenCV", "VAD", "SQLite"],
-    githubUrl: "https://github.com/DSMohamed/local-ai-gaming-companion",
+    githubUrl: "https://github.com/DSMohamed/AI-COMP",
     liveUrl: "",
     featured: true,
     highlights: [
@@ -144,7 +194,7 @@ const PROJECTS = [
     longDescription: "Built for the Seniors 2026 cohort, this platform features custom audio-visual micro-interactions, responsive Embla carousels, Radix UI accessible primitives, dynamic student directories, and zero-downtime Cloudflare Pages edge deployments.",
     image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1200&auto=format&fit=crop",
     tags: ["React 19", "TanStack Start", "Tailwind CSS v4", "Framer Motion", "Firebase", "Cloudflare Pages", "TypeScript"],
-    githubUrl: "https://github.com/DSMohamed/thanaweya-cinematic-chronicle",
+    githubUrl: "https://github.com/DSMohamed/seniors2b26",
     liveUrl: "https://thanaweya-cinematic-chronicle.pages.dev",
     highlights: [
       "Built with cutting-edge React 19 and TanStack Start full-stack routing",
@@ -188,7 +238,7 @@ const PROJECTS = [
     longDescription: "Developed as the CS50 Computer Science Final Project. Features complete CRUD deck and card management, custom CSS 3D flip card animations, user session management with password hashing, and friendly custom error handling.",
     image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=1200&auto=format&fit=crop",
     tags: ["Python", "Flask", "SQLite", "JavaScript", "HTML5", "CSS3 Animations", "Bootstrap"],
-    githubUrl: "https://github.com/DSMohamed/studymate-flashcards",
+    githubUrl: "https://github.com/DSMohamed/StudyMate",
     liveUrl: "https://www.youtube.com/watch?v=6b2q14Yfeyk",
     highlights: [
       "CS50 Harvard Verified Final Project with video demonstration",
@@ -210,7 +260,7 @@ const PROJECTS = [
     longDescription: "Sytharia is an exploratory digital playground built for audiovisual performances. It compiles custom GLSL fragment shaders on the fly, driven by frequency analysis from Web Audio API nodes.",
     image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1200&auto=format&fit=crop",
     tags: ["WebGL", "Three.js", "GLSL", "React", "TypeScript", "Web Audio API", "Tailwind"],
-    githubUrl: "https://github.com/DSMohamed/sytharia",
+    githubUrl: "https://github.com/DSMohamed/pixel-perfect",
     liveUrl: "",
     highlights: [
       "Real-time 60fps procedural raymarching on GPU",

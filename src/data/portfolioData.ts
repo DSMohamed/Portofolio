@@ -5,7 +5,7 @@ export const PERSONAL_INFO = {
   eyebrow: "CREATIVE DEVELOPER & AI ENGINEER",
   title: "Building autonomous AI agents, local neural engines & high-end interactive digital experiences.",
   tagline: "I build offline-first AI companions, agentic workflows, and high-performance creative web architectures.",
-  bio: "Creative technologist and AI systems engineer operating at the convergence of local neural models, computer vision pipelines, and production full-stack architecture. Developer of local AI gaming companions, intelligent agentic meeting platforms, offline developer IDEs, high-traffic client EdTech portals, and cinematic web experiences.",
+  bio: "Creative technologist and AI systems engineer operating at the convergence of local neural models, computer vision pipelines, and production full-stack architecture. Developer of local AI gaming companions, intelligent agentic meeting platforms, offline developer IDEs, commercial EdTech portals, and cinematic web experiences.",
   location: "Cairo, Egypt — Available Worldwide",
   availability: "Available for high-impact roles & creative engineering",
   email: "mohamedbuisness2@gmail.com",
@@ -23,7 +23,7 @@ export const STATS: StatItem[] = [
   {
     value: "10k+",
     label: "Active Students",
-    description: "High-traffic commercial biology e-learning academy running on custom infrastructure."
+    description: "High-traffic commercial biology and geography e-learning platforms across Egypt."
   },
   {
     value: "100%",
@@ -39,28 +39,53 @@ export const STATS: StatItem[] = [
 
 export const PROJECTS: Project[] = [
   {
-    id: "dr-biology-academy",
-    title: "ElSultan Academy (DrBiology)",
+    id: "elsultan-academy",
+    title: "ElSultan Academy (Geography)",
     category: "fullstack",
     categoryLabel: "Full Stack",
-    tagline: "High-traffic commercial biology e-learning academy & native mobile application",
-    description: "Enterprise e-learning web & mobile ecosystem engineered for Dr. Ahmed Sultan's biology students. Features secure VdoCipher DRM video streaming, Paymob & Kashier multi-gateway payments, real-time student analytics, and TWA Android apps.",
-    longDescription: "A proprietary commercial client project built with React, Vite, Tailwind CSS, and Firebase Realtime Database. Features enterprise multi-layer security headers, encrypted VdoCipher video player integration via Cloudflare Workers to prevent piracy, Paymob webhook verification, automated exam scoring with detailed gradebook analytics, and a Trusted Web Activity (TWA) bundle published for Android.",
-    image: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=1200&auto=format&fit=crop",
-    tags: ["React", "TypeScript", "Tailwind CSS", "Firebase", "Paymob", "Kashier", "Capacitor", "Cloudflare Workers", "VdoCipher"],
+    tagline: "Commercial e-learning web platform & multi-gateway payment ecosystem for secondary geography",
+    description: "Commercial education web platform developed for Mr. Ahmed Sultan's secondary geography academy. Features automated Egyptian payment gateway webhooks via Paymob, Supabase PostgreSQL database, custom video player integration, and automated student progress tracking.",
+    longDescription: "A proprietary production client platform engineered with modern React, Vite, Tailwind CSS, and a Supabase PostgreSQL backend. Features Paymob webhook verification, automated student wallet activation, comprehensive course/exam catalogs with interactive grading, and custom security headers to protect digital educational material.",
+    image: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=1200&auto=format&fit=crop",
+    tags: ["React", "TypeScript", "Tailwind CSS", "Supabase", "PostgreSQL", "Paymob", "Vite", "Node.js"],
     githubUrl: "", // Client proprietary, closed-source
-    liveUrl: "https://elsultanacadmy.pages.dev",
+    liveUrl: "https://elsultanacademy.com",
     featured: true,
     highlights: [
-      "Client Commercial Project: Serving thousands of active secondary education students across Egypt",
-      "Anti-Piracy DRM: Cloudflare Worker proxying encrypted VdoCipher dynamic OTP watermarked streams",
-      "Integrated Egyptian Payment Gateways: Instant automated wallet activations via Paymob & Kashier",
-      "Native Android distribution built via Capacitor & TWA with sub-2.5s LCP performance optimization"
+      "Commercial Client Platform: Built for Mr. Ahmed Sultan's geography students across secondary education",
+      "Automated Egyptian Payments: Real-time Paymob payment processing with instant wallet and course access",
+      "Supabase PostgreSQL Architecture: Relational database schema for student enrollments and test analytics",
+      "Production domain deployed at elsultanacademy.com with enterprise security headers and CSP"
     ],
     metrics: [
       { label: "Client Platform", value: "Commercial" },
-      { label: "Mobile", value: "TWA + Android" },
-      { label: "Security", value: "DRM & CSP" }
+      { label: "Domain", value: "elsultanacademy.com" },
+      { label: "Database", value: "Supabase SQL" }
+    ]
+  },
+  {
+    id: "dr-biology-academy",
+    title: "DrBiology Academy",
+    category: "fullstack",
+    categoryLabel: "Full Stack",
+    tagline: "High-traffic biology academy with anti-piracy DRM video streaming & native Android TWA app",
+    description: "Full-scale commercial e-learning ecosystem built for Dr. Mostafa Khaled's biology academy (American Diploma & Thanawya Amma). Features encrypted VdoCipher DRM video streaming via Cloudflare Workers, Paymob & Kashier payments, and a published Android app.",
+    longDescription: "Engineered to deliver secure biology curriculum with zero content piracy. Built with React, Vite, Tailwind CSS, and Firebase Realtime Database. Integrates Cloudflare Workers to proxy encrypted VdoCipher dynamic OTP watermarked streams, automated Kashier and Paymob payment reconciliation, and a Trusted Web Activity (TWA) bundle published for native Android distribution.",
+    image: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=1200&auto=format&fit=crop",
+    tags: ["React", "TypeScript", "Tailwind CSS", "Firebase", "Paymob", "Kashier", "Capacitor", "Cloudflare Workers", "VdoCipher"],
+    githubUrl: "", // Client proprietary, closed-source
+    liveUrl: "https://drbiologyacademy.pages.dev",
+    featured: true,
+    highlights: [
+      "Commercial Client Platform: Built for Dr. Mostafa Khaled's biology curriculum (American Diploma & Thanawya Amma)",
+      "Anti-Piracy DRM: Cloudflare Worker proxying encrypted VdoCipher dynamic OTP watermarked streams",
+      "Dual Payment Gateways: Seamless Paymob & Kashier automated checkout and instant enrollments",
+      "Native Android distribution built via Capacitor & TWA with sub-2.5s LCP loading optimization"
+    ],
+    metrics: [
+      { label: "Client Platform", value: "Commercial" },
+      { label: "Mobile", value: "Android TWA" },
+      { label: "Video DRM", value: "VdoCipher" }
     ]
   },
   {
@@ -320,12 +345,12 @@ export const TIMELINE: TimelineItem[] = [
   {
     id: "timeline-2",
     role: "Lead Full-Stack Engineer (Client Platforms)",
-    organization: "DrBiology / ElSultan Academy",
+    organization: "DrBiology & ElSultan Academy",
     period: "2023 — 2024",
     location: "Cairo, Egypt",
-    badge: "Commercial Client",
-    description: "Architected and scaled the commercial e-learning ecosystem for Dr. Ahmed Sultan serving 10,000+ active biology students. Implemented anti-piracy VdoCipher video streaming via Cloudflare Workers, Paymob and Kashier payment automation, and published native Android TWA apps.",
-    technologies: ["React", "TypeScript", "Tailwind CSS", "Firebase", "Paymob", "Kashier", "Capacitor", "Cloudflare Workers"]
+    badge: "Commercial Clients",
+    description: "Architected and scaled commercial e-learning ecosystems serving 10,000+ active secondary students across Egypt: ElSultan Academy (Geography platform with Paymob & Supabase SQL) and DrBiology Academy (Anti-piracy VdoCipher DRM video streaming via Cloudflare Workers & native Android TWA apps).",
+    technologies: ["React", "TypeScript", "Tailwind CSS", "Supabase", "Firebase", "Paymob", "Kashier", "Capacitor", "Cloudflare Workers"]
   },
   {
     id: "timeline-3",
