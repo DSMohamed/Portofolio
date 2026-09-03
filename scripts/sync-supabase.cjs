@@ -1,6 +1,11 @@
-import { Project, SkillCategory, TimelineItem, ServiceItem, StatItem, SocialLink } from '../types/portfolio';
+const { createClient } = require('@supabase/supabase-js');
 
-export const PERSONAL_INFO = {
+const SUPABASE_URL = 'https://selyovpetsjmnfuwatfq.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNlbHlvdnBldHNqbW5mdXdhdGZxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODgzNjU0MDgsImV4cCI6MjEwMzk0MTQwOH0.dmPCsuXe3-Tpp6YbuQdqFxP0mCSvct7rMT32Y0mKEWo';
+
+const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+const PERSONAL_INFO = {
   name: "MOHAMED",
   eyebrow: "CREATIVE DEVELOPER & AI ENGINEER",
   title: "Building autonomous AI agents, local neural engines & high-end interactive digital experiences.",
@@ -14,7 +19,7 @@ export const PERSONAL_INFO = {
   twitter: "https://x.com/N/A",
 };
 
-export const STATS: StatItem[] = [
+const STATS = [
   {
     value: "25+",
     label: "Projects Shipped",
@@ -37,7 +42,7 @@ export const STATS: StatItem[] = [
   }
 ];
 
-export const PROJECTS: Project[] = [
+const PROJECTS = [
   {
     id: "local-ai-gaming-companion",
     title: "Local AI Gaming Companion",
@@ -219,7 +224,39 @@ export const PROJECTS: Project[] = [
   }
 ];
 
-export const SKILL_CATEGORIES: SkillCategory[] = [
+const TIMELINE = [
+  {
+    id: "timeline-1",
+    role: "Local AI & Autonomous Systems Engineer",
+    organization: "Independent Research & Development",
+    period: "2024 — PRESENT",
+    location: "Cairo / Remote",
+    badge: "Current Focus",
+    description: "Architecting local-first neural agents, privacy-respecting AI companions (Local AI Gaming Companion), and desktop development environments (JCode IDE). Focused on low-latency STT/TTS speech loops and local LLM execution on consumer GPU hardware.",
+    technologies: ["Python", "PyTorch", "faster-whisper", "Ollama", "React", "TypeScript", "Electron", "OpenCV"]
+  },
+  {
+    id: "timeline-2",
+    role: "Full Stack & Creative Developer",
+    organization: "Web & Digital Studio",
+    period: "2023 — 2024",
+    location: "Cairo, Egypt",
+    description: "Engineered high-performance web applications using TanStack Start, React 19, Tailwind CSS, and Cloudflare Pages. Built modern academic chronicles, client platforms, and interactive visual identity designs.",
+    technologies: ["React 19", "TanStack Start", "TypeScript", "Tailwind CSS v4", "Cloudflare Pages", "Firebase"]
+  },
+  {
+    id: "timeline-3",
+    role: "Software Engineering & CS50 Scholar",
+    organization: "Harvard CS50 & Self-Directed Labs",
+    period: "2022 — 2023",
+    location: "Cairo, Egypt",
+    badge: "Foundation",
+    description: "Completed Harvard's CS50 with honors, building StudyMate (Python/Flask spaced repetition flashcard platform). Established core foundations across algorithms, memory management, and relational database systems.",
+    technologies: ["C", "Python", "Flask", "SQLite", "JavaScript", "HTML/CSS", "Algorithms"]
+  }
+];
+
+const SKILL_CATEGORIES = [
   {
     title: "AI & Neural Engineering",
     iconName: "Cpu",
@@ -282,39 +319,7 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
   }
 ];
 
-export const TIMELINE: TimelineItem[] = [
-  {
-    id: "timeline-1",
-    role: "Local AI & Autonomous Systems Engineer",
-    organization: "Independent Research & Development",
-    period: "2024 — PRESENT",
-    location: "Cairo / Remote",
-    badge: "Current Focus",
-    description: "Architecting local-first neural agents, privacy-respecting AI companions (Local AI Gaming Companion), and desktop development environments (JCode IDE). Focused on low-latency STT/TTS speech loops and local LLM execution on consumer GPU hardware.",
-    technologies: ["Python", "PyTorch", "faster-whisper", "Ollama", "React", "TypeScript", "Electron", "OpenCV"]
-  },
-  {
-    id: "timeline-2",
-    role: "Full Stack & Creative Developer",
-    organization: "Web & Digital Studio",
-    period: "2023 — 2024",
-    location: "Cairo, Egypt",
-    description: "Engineered high-performance web applications using TanStack Start, React 19, Tailwind CSS, and Cloudflare Pages. Built modern academic chronicles, client platforms, and interactive visual identity designs.",
-    technologies: ["React 19", "TanStack Start", "TypeScript", "Tailwind CSS v4", "Cloudflare Pages", "Firebase"]
-  },
-  {
-    id: "timeline-3",
-    role: "Software Engineering & CS50 Scholar",
-    organization: "Harvard CS50 & Self-Directed Labs",
-    period: "2022 — 2023",
-    location: "Cairo, Egypt",
-    badge: "Foundation",
-    description: "Completed Harvard's CS50 with honors, building StudyMate (Python/Flask spaced repetition flashcard platform). Established core foundations across algorithms, memory management, and relational database systems.",
-    technologies: ["C", "Python", "Flask", "SQLite", "JavaScript", "HTML/CSS", "Algorithms"]
-  }
-];
-
-export const SERVICES: ServiceItem[] = [
+const SERVICES = [
   {
     id: "ai-eng",
     title: "Local AI & Agent Engineering",
@@ -369,29 +374,96 @@ export const SERVICES: ServiceItem[] = [
   }
 ];
 
-export const SOCIAL_LINKS: SocialLink[] = [
-  {
-    name: "GitHub",
-    url: "https://github.com/DSMohamed",
-    icon: "Github",
-    handle: "@DSMohamed"
-  },
-  {
-    name: "LinkedIn",
-    url: "https://linkedin.com/in/mohamed-khaled-elsafoury-8a7124280",
-    icon: "Linkedin",
-    handle: "in/mohamed-khaled-elsafoury-8a7124280"
-  },
-  {
-    name: "X (Twitter)",
-    url: "https://x.com/N/A",
-    icon: "Twitter",
-    handle: "N/A"
-  },
-  {
-    name: "Email",
-    url: "mailto:mohamedbuisness2@gmail.com",
-    icon: "Mail",
-    handle: "mohamedbuisness2@gmail.com"
+async function sync() {
+  console.log('Pushing MohamedWorks data to Supabase...');
+
+  // Site Settings
+  await supabase.from('site_settings').upsert({
+    key: 'personal_info',
+    value: PERSONAL_INFO,
+    updated_at: new Date().toISOString(),
+  });
+  await supabase.from('site_settings').upsert({
+    key: 'stats',
+    value: STATS,
+    updated_at: new Date().toISOString(),
+  });
+  console.log('✓ Site settings pushed');
+
+  // Projects
+  for (let i = 0; i < PROJECTS.length; i++) {
+    const p = PROJECTS[i];
+    const { error } = await supabase.from('projects').upsert({
+      id: p.id,
+      title: p.title,
+      category: p.category,
+      category_label: p.categoryLabel,
+      tagline: p.tagline,
+      description: p.description,
+      long_description: p.longDescription,
+      image: p.image,
+      tags: p.tags,
+      github_url: p.githubUrl,
+      live_url: p.liveUrl,
+      featured: p.featured || false,
+      metrics: p.metrics || [],
+      highlights: p.highlights || [],
+      sort_order: i,
+    });
+    if (error) console.error('Project error:', p.title, error);
+    else console.log('✓ Project:', p.title);
   }
-];
+
+  // Experience
+  for (let i = 0; i < TIMELINE.length; i++) {
+    const e = TIMELINE[i];
+    const { error } = await supabase.from('experience').upsert({
+      id: e.id,
+      role: e.role,
+      organization: e.organization,
+      period: e.period,
+      location: e.location,
+      description: e.description,
+      technologies: e.technologies,
+      badge: e.badge,
+      sort_order: i,
+    });
+    if (error) console.error('Experience error:', e.role, error);
+    else console.log('✓ Experience:', e.role);
+  }
+
+  // Skills
+  for (let i = 0; i < SKILL_CATEGORIES.length; i++) {
+    const s = SKILL_CATEGORIES[i];
+    const { error } = await supabase.from('skills').upsert({
+      id: `skill-cat-${i}`,
+      title: s.title,
+      icon_name: s.iconName,
+      description: s.description,
+      skills: s.skills,
+      sort_order: i,
+    });
+    if (error) console.error('Skill error:', s.title, error);
+    else console.log('✓ Skill category:', s.title);
+  }
+
+  // Services
+  for (let i = 0; i < SERVICES.length; i++) {
+    const s = SERVICES[i];
+    const { error } = await supabase.from('services').upsert({
+      id: s.id,
+      title: s.title,
+      tagline: s.tagline,
+      description: s.description,
+      icon: s.icon,
+      deliverables: s.deliverables,
+      sort_order: i,
+    });
+    if (error) console.error('Service error:', s.title, error);
+    else console.log('✓ Service:', s.title);
+  }
+
+  console.log('🚀 Sync completed successfully!');
+}
+
+sync().catch(console.error);

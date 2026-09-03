@@ -25,7 +25,7 @@ export const Hero: React.FC<HeroProps> = () => {
     >
       {/* 1. Liquid Reveal Background Canvas */}
       <div className="absolute inset-0 z-0">
-        <LiquidReveal baseImageSrc="/base.png" chromeImageSrc="/chrome.jpg" />
+        <LiquidReveal baseImageSrc="/base.png" chromeImageSrc="/chrome.png" />
       </div>
 
       {/* 2. Ambient Grid & Overlay Pattern */}

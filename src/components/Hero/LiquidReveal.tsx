@@ -234,7 +234,7 @@ export const LiquidReveal: React.FC<LiquidRevealProps> = ({
       for (let i = 0; i < TRAIL_LENGTH; i++) {
         const node = state.trail[i];
         const r = Math.max(4, node.radius);
-        
+
         const rCore = (r * 0.75).toFixed(1);
         const rMid = (r * 1.05).toFixed(1);
         const rSoft = (r + 32).toFixed(1);
@@ -312,9 +312,8 @@ export const LiquidReveal: React.FC<LiquidRevealProps> = ({
           src={chromeImageSrc}
           alt="Mohamed Chrome Helmeted Vision"
           onLoad={handleChromeLoad}
-          className={`w-full h-full object-cover object-center transition-opacity duration-700 pointer-events-none ${
-            imagesLoaded.chrome ? 'opacity-100' : 'opacity-0'
-          }`}
+          className={`w-full h-full object-cover object-center transition-opacity duration-700 pointer-events-none ${imagesLoaded.chrome ? 'opacity-100' : 'opacity-0'
+            }`}
           loading="eager"
           decoding="async"
         />
@@ -361,29 +360,27 @@ export const LiquidReveal: React.FC<LiquidRevealProps> = ({
           src={baseImageSrc}
           alt="Mohamed Portrait"
           onLoad={handleBaseLoad}
-          className={`w-full h-full object-cover object-center transition-opacity duration-700 pointer-events-none ${
-            imagesLoaded.base ? 'opacity-100' : 'opacity-0'
-          }`}
+          className={`w-full h-full object-cover object-center transition-opacity duration-700 pointer-events-none ${imagesLoaded.base ? 'opacity-100' : 'opacity-0'
+            }`}
           loading="eager"
           decoding="async"
         />
       </div>
 
       {/* 5. CINEMATIC GRADIENT VIGNETTE & CONTRAST EDGES */}
-      <div 
+      <div
         className="absolute inset-0 z-[15] pointer-events-none bg-gradient-to-t from-[#08080a] via-transparent to-[#08080a]/50"
-        aria-hidden="true" 
+        aria-hidden="true"
       />
-      <div 
-        className="absolute inset-0 z-[15] pointer-events-none bg-gradient-to-r from-[#08080a]/70 via-transparent to-[#08080a]/70" 
-        aria-hidden="true" 
+      <div
+        className="absolute inset-0 z-[15] pointer-events-none bg-gradient-to-r from-[#08080a]/70 via-transparent to-[#08080a]/70"
+        aria-hidden="true"
       />
 
       {/* Interactive Liquid Cue Pill */}
-      <div 
-        className={`absolute bottom-6 right-6 z-[16] transition-all duration-500 hidden md:flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/10 backdrop-blur-md bg-black/40 text-[11px] font-mono tracking-wider text-zinc-400 ${
-          isInteracting ? 'opacity-40 translate-y-1' : 'opacity-90 translate-y-0'
-        }`}
+      <div
+        className={`absolute bottom-6 right-6 z-[16] transition-all duration-500 hidden md:flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/10 backdrop-blur-md bg-black/40 text-[11px] font-mono tracking-wider text-zinc-400 ${isInteracting ? 'opacity-40 translate-y-1' : 'opacity-90 translate-y-0'
+          }`}
       >
         <span className="w-2 h-2 rounded-full bg-amber-400 animate-ping" />
         <span>HOVER / TOUCH TO REVEAL AUGMENTATION</span>
