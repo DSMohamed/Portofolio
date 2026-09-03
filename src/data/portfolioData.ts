@@ -16,6 +16,11 @@ export const PERSONAL_INFO = {
 
 export const STATS: StatItem[] = [
   {
+    value: "1st 🏆",
+    label: "Hackathon Winner",
+    description: "Orange × ITIDA × Creativa AI Hackathon champion across New Valley Governorate."
+  },
+  {
     value: "30+",
     label: "Projects Shipped",
     description: "Production client platforms, local neural models, and AI agent frameworks."
@@ -29,11 +34,6 @@ export const STATS: StatItem[] = [
     value: "100%",
     label: "Local-First AI",
     description: "Zero-cloud latency, on-device Whisper STT, TTS, and quantized LLM inference."
-  },
-  {
-    value: "60 FPS",
-    label: "Kinetic Polish",
-    description: "Shader-level responsiveness, micro-interactions, and fluid web experiences."
   }
 ];
 
@@ -89,6 +89,31 @@ export const PROJECTS: Project[] = [
     ]
   },
   {
+    id: "grounded-insights-hackathon",
+    title: "Grounded Insights (1st Place 🏆)",
+    category: "ai",
+    categoryLabel: "AI & Agents",
+    tagline: "1st Place Winner (Orange × ITIDA × Creativa) — Clinical Decision Support RAG & AI Safety Engine",
+    description: "First-place winning Clinical Decision Support RAG platform engineered for the Orange × ITIDA × Creativa Hackathon. Features multi-document USPSTF clinical guideline indexing, ChromaDB vector search, 3-tier refusal guardrails, post-generation citation integrity firewalls, and sub-400ms synthesis via Groq LPU.",
+    longDescription: "Awarded First Place across New Valley Governorate in the hackathon organized by Orange, ITIDA, Creativa, and Instant. Built with a FastAPI backend, FastEmbed BGE ONNX embeddings, ChromaDB cosine vector index, and Groq LPU (llama-3.3-70b-versatile). Paired with a React 19 / TanStack Start web interface and Flutter mobile client, it successfully cleared all 83/83 strict clinical evaluation checkpoints with 0% invented citations.",
+    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=1200&auto=format&fit=crop",
+    tags: ["FastAPI", "Python", "ChromaDB", "Groq LPU", "TanStack Start", "React 19", "Flutter", "Supabase", "Tailwind CSS v4"],
+    githubUrl: "https://github.com/DSMohamed/Grounded",
+    liveUrl: "https://grounded-insights.mohamedbuisness2.workers.dev/",
+    featured: true,
+    highlights: [
+      "1st Place Winner 🏆: Awarded First Place across New Valley Governorate (Orange × ITIDA × Creativa × Instant)",
+      "Clinical RAG Engine: FastEmbed ONNX (bge-small-en-v1.5) with ChromaDB persistent cosine vector store",
+      "Safety Guardrails: 3-tier pre-generation risk classifier and post-generation citation integrity firewall",
+      "Multi-Platform: Production React 19 / TanStack Start web dashboard + Flutter mobile application"
+    ],
+    metrics: [
+      { label: "Award", value: "1st Place 🏆" },
+      { label: "Checkpoints", value: "83/83 Cleared" },
+      { label: "Inference", value: "<400ms (Groq)" }
+    ]
+  },
+  {
     id: "local-ai-gaming-companion",
     title: "Local AI Gaming Companion",
     category: "ai",
@@ -132,6 +157,30 @@ export const PROJECTS: Project[] = [
     metrics: [
       { label: "Stack", value: "Electron + React" },
       { label: "Privacy", value: "Local-First" }
+    ]
+  },
+  {
+    id: "sytharia-ide",
+    title: "Sytharia IDE — AI-Native Developer Suite",
+    category: "fullstack",
+    categoryLabel: "Full Stack",
+    tagline: "Custom Electron developer environment with embedded OpenCode autonomous coding agents",
+    description: "An AI-native desktop IDE built on custom Electron architecture with embedded OpenCode language model providers, in-editor agent modes (ask, agent, edit), custom Dark 2026 aesthetics, and a zero-telemetry runtime.",
+    longDescription: "Engineered as an offline-capable, AI-integrated developer environment for high-velocity software engineering. Built on VS Code OSS with a native extension integration ('sytharia-code') powered by the OpenCode SDK. Supports interactive chat participants directly inside editor panels, terminals, and notebooks with zero cloud telemetry and native language server protocols.",
+    image: "https://images.unsplash.com/photo-1542838132-92c53300491e?q=80&w=1200&auto=format&fit=crop",
+    tags: ["Electron", "TypeScript", "VS Code OSS", "OpenCode", "Node.js", "AI Agents", "Monaco"],
+    githubUrl: "https://github.com/DSMohamed/opencode",
+    liveUrl: "",
+    featured: false,
+    highlights: [
+      "Deep OpenCode Integration: Embedded multi-mode agent participant (Ask, Agent, Edit) across panels and terminals",
+      "Zero-Telemetry Runtime: Customized product configuration stripped of proprietary tracking for absolute privacy",
+      "High-Performance Electron: Custom Dark 2026 visual styling, Space Grotesk typography, and local workspace tools"
+    ],
+    metrics: [
+      { label: "Architecture", value: "Electron OSS" },
+      { label: "AI Engine", value: "OpenCode" },
+      { label: "Telemetry", value: "0% (Private)" }
     ]
   },
   {
@@ -335,12 +384,32 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
 
 export const TIMELINE: TimelineItem[] = [
   {
+    id: "timeline-hackathon-1st",
+    role: "1st Place Winner — AI Clinical RAG Hackathon",
+    organization: "Orange × ITIDA × Creativa × Instant",
+    period: "2024",
+    location: "New Valley, Egypt",
+    badge: "1st Place Winner 🏆",
+    description: "Awarded First Place across New Valley Governorate for engineering 'Grounded Insights' (Team 'El Safe Refusal') — an evidence-bound Clinical Decision Support RAG system featuring multi-tier refusal classifiers, USPSTF clinical guideline ingestion, FastEmbed ChromaDB vector search, Groq LPU inference, and a cross-platform web/Flutter architecture clearing 83/83 audit checkpoints.",
+    technologies: ["Python", "FastAPI", "ChromaDB", "FastEmbed", "Groq LPU", "React 19", "TanStack Start", "Flutter", "Supabase"]
+  },
+  {
+    id: "timeline-sytharia-founder",
+    role: "Founder & Lead Systems Engineer",
+    organization: "Sytharia Software Studio",
+    period: "2024 — PRESENT",
+    location: "Cairo / Remote",
+    badge: "Studio Founder",
+    description: "Founding and directing Sytharia, a modern software studio delivering full-stack web platforms, automated AI workflows (N8N, LLM agents), and custom developer tooling (Sytharia IDE). Building towards long-term embodied AI and robotics systems.",
+    technologies: ["TanStack Start", "React 19", "Three.js", "Python", "FastAPI", "Supabase", "Tailwind CSS v4", "Cloudflare"]
+  },
+  {
     id: "timeline-1",
     role: "Local AI & Autonomous Systems Engineer",
     organization: "Independent Research & Development",
     period: "2024 — PRESENT",
     location: "Cairo / Remote",
-    badge: "Current Focus",
+    badge: "AI Research",
     description: "Architecting local-first neural agents, privacy-respecting AI companions (AI-COMP), desktop development environments (JCode IDE), and multi-agent meeting platforms. Focused on low-latency STT/TTS speech loops and local LLM execution on consumer GPU hardware.",
     technologies: ["Python", "PyTorch", "faster-whisper", "Ollama", "React", "TypeScript", "Electron", "OpenCV"]
   },
