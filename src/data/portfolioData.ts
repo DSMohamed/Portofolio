@@ -5,7 +5,7 @@ export const PERSONAL_INFO = {
   eyebrow: "CREATIVE DEVELOPER & AI ENGINEER",
   title: "Building autonomous AI agents, local neural engines & high-end interactive digital experiences.",
   tagline: "I build offline-first AI companions, agentic workflows, and high-performance creative web architectures.",
-  bio: "Creative technologist and AI systems engineer operating at the convergence of local neural models, computer vision pipelines, and production full-stack architecture. Developer of local AI gaming companions, intelligent agentic meeting platforms, offline developer IDEs, and cinematic web experiences.",
+  bio: "Creative technologist and AI systems engineer operating at the convergence of local neural models, computer vision pipelines, and production full-stack architecture. Developer of local AI gaming companions, intelligent agentic meeting platforms, offline developer IDEs, high-traffic client EdTech portals, and cinematic web experiences.",
   location: "Cairo, Egypt — Available Worldwide",
   availability: "Available for high-impact roles & creative engineering",
   email: "mohamedbuisness2@gmail.com",
@@ -16,14 +16,14 @@ export const PERSONAL_INFO = {
 
 export const STATS: StatItem[] = [
   {
-    value: "25+",
+    value: "30+",
     label: "Projects Shipped",
-    description: "Production web applications, local neural models, and AI agent frameworks."
+    description: "Production client platforms, local neural models, and AI agent frameworks."
   },
   {
-    value: "3+",
-    label: "Years Engineering",
-    description: "Hands-on craft across React, TypeScript, Python, PyTorch, and cloud platforms."
+    value: "10k+",
+    label: "Active Students",
+    description: "High-traffic commercial biology e-learning academy running on custom infrastructure."
   },
   {
     value: "100%",
@@ -39,6 +39,31 @@ export const STATS: StatItem[] = [
 
 export const PROJECTS: Project[] = [
   {
+    id: "dr-biology-academy",
+    title: "ElSultan Academy (DrBiology)",
+    category: "fullstack",
+    categoryLabel: "Full Stack",
+    tagline: "High-traffic commercial biology e-learning academy & native mobile application",
+    description: "Enterprise e-learning web & mobile ecosystem engineered for Dr. Ahmed Sultan's biology students. Features secure VdoCipher DRM video streaming, Paymob & Kashier multi-gateway payments, real-time student analytics, and TWA Android apps.",
+    longDescription: "A proprietary commercial client project built with React, Vite, Tailwind CSS, and Firebase Realtime Database. Features enterprise multi-layer security headers, encrypted VdoCipher video player integration via Cloudflare Workers to prevent piracy, Paymob webhook verification, automated exam scoring with detailed gradebook analytics, and a Trusted Web Activity (TWA) bundle published for Android.",
+    image: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=1200&auto=format&fit=crop",
+    tags: ["React", "TypeScript", "Tailwind CSS", "Firebase", "Paymob", "Kashier", "Capacitor", "Cloudflare Workers", "VdoCipher"],
+    githubUrl: "", // Client proprietary, closed-source
+    liveUrl: "https://elsultanacadmy.pages.dev",
+    featured: true,
+    highlights: [
+      "Client Commercial Project: Serving thousands of active secondary education students across Egypt",
+      "Anti-Piracy DRM: Cloudflare Worker proxying encrypted VdoCipher dynamic OTP watermarked streams",
+      "Integrated Egyptian Payment Gateways: Instant automated wallet activations via Paymob & Kashier",
+      "Native Android distribution built via Capacitor & TWA with sub-2.5s LCP performance optimization"
+    ],
+    metrics: [
+      { label: "Client Platform", value: "Commercial" },
+      { label: "Mobile", value: "TWA + Android" },
+      { label: "Security", value: "DRM & CSP" }
+    ]
+  },
+  {
     id: "local-ai-gaming-companion",
     title: "Local AI Gaming Companion",
     category: "ai",
@@ -48,9 +73,8 @@ export const PROJECTS: Project[] = [
     longDescription: "Engineered from the ground up for zero cloud dependencies and low latency. Utilizes faster-whisper with Voice Activity Detection (VAD) for instant STT, Ollama abstraction supporting llama3.2:3b and qwen2.5:7b, neural voice synthesis with natural voice interruptions, and SQLite vector memory.",
     image: "https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1200&auto=format&fit=crop",
     tags: ["Python", "faster-whisper", "Ollama", "PyTorch", "OpenCV", "VAD", "SQLite"],
-    githubUrl: "https://github.com/DSMohamed/local-ai-gaming-companion",
+    githubUrl: "https://github.com/DSMohamed/AI-COMP",
     liveUrl: "",
-    featured: true,
     highlights: [
       "100% local processing with zero cloud data transmission",
       "Instant speech interruption with Voice Activity Detection",
@@ -139,7 +163,7 @@ export const PROJECTS: Project[] = [
     longDescription: "Built for the Seniors 2026 cohort, this platform features custom audio-visual micro-interactions, responsive Embla carousels, Radix UI accessible primitives, dynamic student directories, and zero-downtime Cloudflare Pages edge deployments.",
     image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1200&auto=format&fit=crop",
     tags: ["React 19", "TanStack Start", "Tailwind CSS v4", "Framer Motion", "Firebase", "Cloudflare Pages", "TypeScript"],
-    githubUrl: "https://github.com/DSMohamed/thanaweya-cinematic-chronicle",
+    githubUrl: "https://github.com/DSMohamed/seniors2b26",
     liveUrl: "https://thanaweya-cinematic-chronicle.pages.dev",
     highlights: [
       "Built with cutting-edge React 19 and TanStack Start full-stack routing",
@@ -183,7 +207,7 @@ export const PROJECTS: Project[] = [
     longDescription: "Developed as the CS50 Computer Science Final Project. Features complete CRUD deck and card management, custom CSS 3D flip card animations, user session management with password hashing, and friendly custom error handling.",
     image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=1200&auto=format&fit=crop",
     tags: ["Python", "Flask", "SQLite", "JavaScript", "HTML5", "CSS3 Animations", "Bootstrap"],
-    githubUrl: "https://github.com/DSMohamed/studymate-flashcards",
+    githubUrl: "https://github.com/DSMohamed/StudyMate",
     liveUrl: "https://www.youtube.com/watch?v=6b2q14Yfeyk",
     highlights: [
       "CS50 Harvard Verified Final Project with video demonstration",
@@ -205,7 +229,7 @@ export const PROJECTS: Project[] = [
     longDescription: "Sytharia is an exploratory digital playground built for audiovisual performances. It compiles custom GLSL fragment shaders on the fly, driven by frequency analysis from Web Audio API nodes.",
     image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1200&auto=format&fit=crop",
     tags: ["WebGL", "Three.js", "GLSL", "React", "TypeScript", "Web Audio API", "Tailwind"],
-    githubUrl: "https://github.com/DSMohamed/sytharia",
+    githubUrl: "https://github.com/DSMohamed/pixel-perfect",
     liveUrl: "",
     highlights: [
       "Real-time 60fps procedural raymarching on GPU",
@@ -260,8 +284,8 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
       { name: "Supabase & PostgreSQL", level: "Expert", hot: true },
       { name: "SQLite & Local Persistence", level: "Expert" },
       { name: "Redis Caching & Queues", level: "Advanced" },
-      { name: "Firebase Auth & Firestore", level: "Advanced" },
-      { name: "RESTful & Real-time WebSockets", level: "Expert" },
+      { name: "Firebase Auth & Realtime DB", level: "Expert", hot: true },
+      { name: "Paymob & Kashier Payments", level: "Expert", hot: true },
       { name: "Monaco Editor LSP", level: "Advanced" }
     ]
   },
@@ -272,12 +296,12 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
     skills: [
       { name: "Cloudflare Pages & Workers", level: "Expert", hot: true },
       { name: "Git & GitHub CI/CD", level: "Expert" },
-      { name: "Docker & Local Containers", level: "Advanced" },
+      { name: "Capacitor Mobile (Android/TWA)", level: "Expert", hot: true },
       { name: "Linux & PowerShell Automation", level: "Expert" },
       { name: "Playwright & Vitest Testing", level: "Advanced" },
       { name: "Vercel / Netlify", level: "Expert" },
       { name: "Wrangler CLI", level: "Expert" },
-      { name: "Performance Profiling", level: "Expert" }
+      { name: "Anti-Piracy Video DRM", level: "Expert", hot: true }
     ]
   }
 ];
@@ -290,17 +314,18 @@ export const TIMELINE: TimelineItem[] = [
     period: "2024 — PRESENT",
     location: "Cairo / Remote",
     badge: "Current Focus",
-    description: "Architecting local-first neural agents, privacy-respecting AI companions (Local AI Gaming Companion), and desktop development environments (JCode IDE). Focused on low-latency STT/TTS speech loops and local LLM execution on consumer GPU hardware.",
+    description: "Architecting local-first neural agents, privacy-respecting AI companions (AI-COMP), desktop development environments (JCode IDE), and multi-agent meeting platforms. Focused on low-latency STT/TTS speech loops and local LLM execution on consumer GPU hardware.",
     technologies: ["Python", "PyTorch", "faster-whisper", "Ollama", "React", "TypeScript", "Electron", "OpenCV"]
   },
   {
     id: "timeline-2",
-    role: "Full Stack & Creative Developer",
-    organization: "Web & Digital Studio",
+    role: "Lead Full-Stack Engineer (Client Platforms)",
+    organization: "DrBiology / ElSultan Academy",
     period: "2023 — 2024",
     location: "Cairo, Egypt",
-    description: "Engineered high-performance web applications using TanStack Start, React 19, Tailwind CSS, and Cloudflare Pages. Built modern academic chronicles, client platforms, and interactive visual identity designs.",
-    technologies: ["React 19", "TanStack Start", "TypeScript", "Tailwind CSS v4", "Cloudflare Pages", "Firebase"]
+    badge: "Commercial Client",
+    description: "Architected and scaled the commercial e-learning ecosystem for Dr. Ahmed Sultan serving 10,000+ active biology students. Implemented anti-piracy VdoCipher video streaming via Cloudflare Workers, Paymob and Kashier payment automation, and published native Android TWA apps.",
+    technologies: ["React", "TypeScript", "Tailwind CSS", "Firebase", "Paymob", "Kashier", "Capacitor", "Cloudflare Workers"]
   },
   {
     id: "timeline-3",
@@ -330,15 +355,15 @@ export const SERVICES: ServiceItem[] = [
   },
   {
     id: "web-dev",
-    title: "Full-Stack Web Engineering",
-    tagline: "Blazing fast, modern React, TanStack Start & Cloudflare deployments",
-    description: "End-to-end web applications built with React 19, TypeScript, TanStack Start, and Tailwind CSS. Clean component systems, accessible UX, resilient backend APIs, and Supabase cloud persistence.",
+    title: "Commercial Web & EdTech Platforms",
+    tagline: "Scalable client portals, payment gateways & DRM video streaming",
+    description: "End-to-end full-stack architectures for commercial clients. Specializing in high-traffic e-learning platforms, automated Paymob/Kashier billing, anti-piracy video DRM, and cross-platform Android apps.",
     icon: "Globe",
     deliverables: [
-      "Modern React / TanStack Start web applications",
-      "Cloudflare Pages & serverless edge deployments",
-      "PostgreSQL, Supabase & SQLite database architecture",
-      "Desktop software using Electron & Monaco editor"
+      "Custom React / TanStack Start web applications",
+      "Egyptian payment gateway integrations (Paymob, Kashier)",
+      "Anti-piracy DRM video streaming (VdoCipher + Cloudflare)",
+      "Android TWA and Capacitor native packaging"
     ]
   },
   {
