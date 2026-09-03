@@ -47,22 +47,22 @@ export const ExperienceTab: React.FC = () => {
   };
 
   return (
-    <div className="space-y-6 animate-fade-in">
+    <div className="space-y-6 animate-fade-in max-w-5xl">
       
       {/* Header & Add Button */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-white/10">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 pb-4 border-b border-white/10">
         <div>
-          <h2 className="text-xl font-bold font-display text-white">
+          <h2 className="text-lg sm:text-xl font-bold font-display text-white">
             Experience & Milestones Manager
           </h2>
-          <p className="text-xs text-zinc-400 font-mono">
-            Manage your career timeline, engineering roles, companies, tech stacks, and highlights.
+          <p className="text-[11px] sm:text-xs text-zinc-400 font-mono">
+            Manage career timeline, roles, companies, tech stacks, and highlights.
           </p>
         </div>
 
         <button
           onClick={handleCreateNew}
-          className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-black font-semibold text-xs font-mono transition-all shadow-lg shadow-amber-400/20 active:scale-95"
+          className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-black font-semibold text-xs font-mono transition-all shadow-lg shadow-amber-400/20 active:scale-95 w-full sm:w-auto"
         >
           <Plus className="w-4 h-4" />
           <span>Add New Experience</span>
@@ -70,29 +70,29 @@ export const ExperienceTab: React.FC = () => {
       </div>
 
       {/* Experience List */}
-      <div className="space-y-4">
+      <div className="space-y-3 sm:space-y-4">
         {experience.map(item => (
           <div
             key={item.id}
-            className="p-6 rounded-2xl bg-[#0c0c11] border border-white/[0.08] flex flex-col md:flex-row md:items-center justify-between gap-6 hover:border-amber-400/30 transition-all group"
+            className="p-4 sm:p-6 rounded-2xl bg-[#0c0c11] border border-white/[0.08] flex flex-col md:flex-row md:items-center justify-between gap-4 sm:gap-6 hover:border-amber-400/30 transition-all group"
           >
             <div className="space-y-2 max-w-3xl">
-              <div className="flex flex-wrap items-center gap-3">
-                <h3 className="font-bold text-white font-display text-lg">
+              <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+                <h3 className="font-bold text-white font-display text-base sm:text-lg">
                   {item.role}
                 </h3>
                 <span className="text-zinc-500 font-mono text-xs">@</span>
-                <span className="text-amber-400 font-mono text-sm font-semibold">
+                <span className="text-amber-400 font-mono text-xs sm:text-sm font-semibold">
                   {item.organization}
                 </span>
                 {item.badge && (
-                  <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-amber-400/10 text-amber-300 border border-amber-400/20 uppercase">
+                  <span className="px-2 py-0.5 rounded text-[9px] sm:text-[10px] font-mono bg-amber-400/10 text-amber-300 border border-amber-400/20 uppercase">
                     {item.badge}
                   </span>
                 )}
               </div>
 
-              <div className="flex flex-wrap items-center gap-4 text-xs font-mono text-zinc-400">
+              <div className="flex flex-wrap items-center gap-3 sm:gap-4 text-[11px] sm:text-xs font-mono text-zinc-400">
                 <span className="flex items-center gap-1">
                   <Calendar className="w-3.5 h-3.5 text-zinc-500" />
                   {item.period}
@@ -109,7 +109,7 @@ export const ExperienceTab: React.FC = () => {
 
               <div className="flex flex-wrap gap-1.5 pt-1">
                 {item.technologies.map((t, idx) => (
-                  <span key={idx} className="px-2 py-0.5 rounded bg-white/[0.03] border border-white/[0.06] text-zinc-400 text-[11px] font-mono">
+                  <span key={idx} className="px-2 py-0.5 rounded bg-white/[0.03] border border-white/[0.06] text-zinc-400 text-[10px] sm:text-[11px] font-mono">
                     {t}
                   </span>
                 ))}
@@ -117,20 +117,20 @@ export const ExperienceTab: React.FC = () => {
             </div>
 
             {/* Actions */}
-            <div className="flex items-center gap-2 shrink-0">
+            <div className="flex items-center gap-2 pt-2 md:pt-0 border-t md:border-t-0 border-white/[0.05] shrink-0 justify-end">
               <button
                 onClick={() => handleEdit(item)}
-                className="p-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-zinc-300 hover:text-white transition-colors"
+                className="p-2 sm:p-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-zinc-300 hover:text-white transition-colors"
                 title="Edit Entry"
               >
-                <Edit2 className="w-4 h-4" />
+                <Edit2 className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
               </button>
               <button
                 onClick={() => handleDelete(item.id, item.role)}
-                className="p-2.5 rounded-xl bg-red-500/10 hover:bg-red-500/20 text-red-400 hover:text-red-300 transition-colors"
+                className="p-2 sm:p-2.5 rounded-xl bg-red-500/10 hover:bg-red-500/20 text-red-400 hover:text-red-300 transition-colors"
                 title="Delete Entry"
               >
-                <Trash2 className="w-4 h-4" />
+                <Trash2 className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
               </button>
             </div>
           </div>
@@ -139,13 +139,13 @@ export const ExperienceTab: React.FC = () => {
 
       {/* Edit / Create Modal */}
       {editingItem && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
-          <div className="relative w-full max-w-xl max-h-[90vh] overflow-y-auto p-6 sm:p-8 rounded-3xl bg-[#0e0e14] border border-white/10 shadow-2xl text-zinc-200">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/85 backdrop-blur-md">
+          <div className="relative w-full max-w-xl max-h-[92vh] overflow-y-auto p-5 sm:p-8 rounded-2xl sm:rounded-3xl bg-[#0e0e14] border border-white/10 shadow-2xl text-zinc-200">
             
-            <div className="flex items-center justify-between pb-4 mb-6 border-b border-white/10">
+            <div className="flex items-center justify-between pb-3 sm:pb-4 mb-4 sm:mb-6 border-b border-white/10">
               <div className="flex items-center gap-2">
-                <Briefcase className="w-5 h-5 text-amber-400" />
-                <h3 className="text-lg font-bold font-display text-white">
+                <Briefcase className="w-4 sm:w-5 h-4 sm:h-5 text-amber-400" />
+                <h3 className="text-base sm:text-lg font-bold font-display text-white">
                   {isNew ? 'Add Experience Milestone' : `Edit: ${editingItem.role}`}
                 </h3>
               </div>
@@ -157,85 +157,85 @@ export const ExperienceTab: React.FC = () => {
               </button>
             </div>
 
-            <form onSubmit={handleSaveModal} className="space-y-4 text-xs font-mono">
+            <form onSubmit={handleSaveModal} className="space-y-3.5 sm:space-y-4 text-xs font-mono">
               
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="space-y-1.5">
-                  <label className="text-zinc-400 uppercase">Role / Position *</label>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+                <div className="space-y-1 sm:space-y-1.5">
+                  <label className="text-zinc-400 uppercase text-[10px] sm:text-xs">Role / Position *</label>
                   <input
                     type="text"
                     required
                     value={editingItem.role}
                     onChange={e => setEditingItem({ ...editingItem, role: e.target.value })}
                     placeholder="Senior Creative Developer"
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-[#14141c] border border-white/10 focus:border-amber-400 text-white text-sm outline-none"
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-[#14141c] border border-white/10 focus:border-amber-400 text-white text-base sm:text-sm outline-none"
                   />
                 </div>
 
-                <div className="space-y-1.5">
-                  <label className="text-zinc-400 uppercase">Organization / Company *</label>
+                <div className="space-y-1 sm:space-y-1.5">
+                  <label className="text-zinc-400 uppercase text-[10px] sm:text-xs">Organization / Company *</label>
                   <input
                     type="text"
                     required
                     value={editingItem.organization}
                     onChange={e => setEditingItem({ ...editingItem, organization: e.target.value })}
                     placeholder="Autonomous Tech Labs"
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-[#14141c] border border-white/10 focus:border-amber-400 text-white text-sm outline-none"
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-[#14141c] border border-white/10 focus:border-amber-400 text-white text-base sm:text-sm outline-none"
                   />
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="space-y-1.5">
-                  <label className="text-zinc-400 uppercase">Period / Dates *</label>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+                <div className="space-y-1 sm:space-y-1.5">
+                  <label className="text-zinc-400 uppercase text-[10px] sm:text-xs">Period / Dates *</label>
                   <input
                     type="text"
                     required
                     value={editingItem.period}
                     onChange={e => setEditingItem({ ...editingItem, period: e.target.value })}
                     placeholder="2024 — PRESENT"
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-[#14141c] border border-white/10 focus:border-amber-400 text-white text-sm outline-none"
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-[#14141c] border border-white/10 focus:border-amber-400 text-white text-base sm:text-sm outline-none"
                   />
                 </div>
 
-                <div className="space-y-1.5">
-                  <label className="text-zinc-400 uppercase">Location *</label>
+                <div className="space-y-1 sm:space-y-1.5">
+                  <label className="text-zinc-400 uppercase text-[10px] sm:text-xs">Location *</label>
                   <input
                     type="text"
                     required
                     value={editingItem.location}
                     onChange={e => setEditingItem({ ...editingItem, location: e.target.value })}
                     placeholder="Cairo / Remote"
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-[#14141c] border border-white/10 focus:border-amber-400 text-white text-sm outline-none"
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-[#14141c] border border-white/10 focus:border-amber-400 text-white text-base sm:text-sm outline-none"
                   />
                 </div>
               </div>
 
-              <div className="space-y-1.5">
-                <label className="text-zinc-400 uppercase">Badge / Highlight (Optional)</label>
+              <div className="space-y-1 sm:space-y-1.5">
+                <label className="text-zinc-400 uppercase text-[10px] sm:text-xs">Badge / Highlight (Optional)</label>
                 <input
                   type="text"
                   value={editingItem.badge || ''}
                   onChange={e => setEditingItem({ ...editingItem, badge: e.target.value || undefined })}
                   placeholder="e.g. Current Focus or Foundation"
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-[#14141c] border border-white/10 focus:border-amber-400 text-white text-sm outline-none"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-[#14141c] border border-white/10 focus:border-amber-400 text-white text-base sm:text-sm outline-none"
                 />
               </div>
 
-              <div className="space-y-1.5">
-                <label className="text-zinc-400 uppercase">Description / Deliverables *</label>
+              <div className="space-y-1 sm:space-y-1.5">
+                <label className="text-zinc-400 uppercase text-[10px] sm:text-xs">Description / Deliverables *</label>
                 <textarea
                   rows={3}
                   required
                   value={editingItem.description}
                   onChange={e => setEditingItem({ ...editingItem, description: e.target.value })}
                   placeholder="Led frontend architecture and autonomous AI integration..."
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-[#14141c] border border-white/10 focus:border-amber-400 text-white text-sm outline-none resize-none font-sans"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-[#14141c] border border-white/10 focus:border-amber-400 text-white text-base sm:text-sm outline-none resize-none font-sans"
                 />
               </div>
 
-              <div className="space-y-1.5">
-                <label className="text-zinc-400 uppercase">Technologies Utilized (Comma separated)</label>
+              <div className="space-y-1 sm:space-y-1.5">
+                <label className="text-zinc-400 uppercase text-[10px] sm:text-xs">Technologies (Comma separated)</label>
                 <input
                   type="text"
                   value={editingItem.technologies.join(', ')}
@@ -246,11 +246,11 @@ export const ExperienceTab: React.FC = () => {
                     })
                   }
                   placeholder="React, TypeScript, FastAPI, WebSockets"
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-[#14141c] border border-white/10 focus:border-amber-400 text-white text-sm outline-none"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-[#14141c] border border-white/10 focus:border-amber-400 text-white text-base sm:text-sm outline-none"
                 />
               </div>
 
-              <div className="flex items-center justify-end gap-3 pt-6 border-t border-white/10">
+              <div className="flex items-center justify-end gap-3 pt-4 sm:pt-6 border-t border-white/10">
                 <button
                   type="button"
                   onClick={() => setEditingItem(null)}
@@ -260,7 +260,7 @@ export const ExperienceTab: React.FC = () => {
                 </button>
                 <button
                   type="submit"
-                  className="px-6 py-2.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-black font-semibold transition-colors shadow-lg shadow-amber-400/20"
+                  className="px-5 sm:px-6 py-2.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-black font-semibold transition-colors shadow-lg shadow-amber-400/20 active:scale-95"
                 >
                   {isNew ? 'Create Milestone' : 'Save Changes'}
                 </button>

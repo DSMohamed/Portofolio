@@ -17,8 +17,6 @@ interface TrailNode {
 }
 
 const TRAIL_LENGTH = 6;
-const BASE_RADIUS = 85;
-const MAX_RADIUS = 145;
 const IDLE_TIMEOUT_MS = 1000;
 
 export const LiquidReveal: React.FC<LiquidRevealProps> = ({
@@ -47,12 +45,14 @@ export const LiquidReveal: React.FC<LiquidRevealProps> = ({
     idleStartTime: 0,
     width: 1200,
     height: 800,
+    baseRadius: 85,
+    maxRadius: 145,
     rafId: 0,
     trail: Array.from({ length: TRAIL_LENGTH }, () => ({
       x: 600,
       y: 400,
-      radius: BASE_RADIUS,
-      targetRadius: BASE_RADIUS,
+      radius: 85,
+      targetRadius: 85,
       opacity: 1,
     })) as TrailNode[],
   });
@@ -124,8 +124,22 @@ export const LiquidReveal: React.FC<LiquidRevealProps> = ({
     const updateContainerDimensions = () => {
       if (containerRef.current) {
         const rect = containerRef.current.getBoundingClientRect();
-        animState.current.width = rect.width || window.innerWidth;
-        animState.current.height = rect.height || window.innerHeight;
+        const w = rect.width || window.innerWidth;
+        const h = rect.height || window.innerHeight;
+        animState.current.width = w;
+        animState.current.height = h;
+
+        // Scale radius dynamically based on screen width for mobile ergonomics
+        if (w < 480) {
+          animState.current.baseRadius = 55;
+          animState.current.maxRadius = 95;
+        } else if (w < 768) {
+          animState.current.baseRadius = 70;
+          animState.current.maxRadius = 120;
+        } else {
+          animState.current.baseRadius = 85;
+          animState.current.maxRadius = 145;
+        }
       }
     };
 
@@ -145,25 +159,25 @@ export const LiquidReveal: React.FC<LiquidRevealProps> = ({
     state.trail.forEach(node => {
       node.x = initX;
       node.y = initY;
-      node.radius = BASE_RADIUS;
-      node.targetRadius = BASE_RADIUS;
+      node.radius = state.baseRadius;
+      node.targetRadius = state.baseRadius;
     });
 
     const animate = (now: number) => {
       const timeSec = now * 0.001;
-      const { width, height } = state;
+      const { width, height, baseRadius, maxRadius } = state;
       const timeSinceMove = now - state.lastMoveTime;
       const isIdle = !state.isPointerInside || timeSinceMove > IDLE_TIMEOUT_MS;
 
       let targetX = state.pointerX;
       let targetY = state.pointerY;
-      let targetRadius = BASE_RADIUS;
+      let targetRadius = baseRadius;
 
       if (isIdle) {
         // Slow cinematic organic Lissajous drift curve when idle
         const t = (now - state.idleStartTime) * 0.0009;
         const centerX = width * 0.5;
-        const centerY = height * 0.42; // Focal point around the face/helmet center
+        const centerY = height * (width < 640 ? 0.38 : 0.42);
 
         const driftRangeX = Math.min(width * 0.16, 140);
         const driftRangeY = Math.min(height * 0.12, 100);
@@ -171,7 +185,7 @@ export const LiquidReveal: React.FC<LiquidRevealProps> = ({
         targetX = centerX + Math.sin(t * 0.9) * driftRangeX + Math.cos(t * 1.7) * (driftRangeX * 0.35);
         targetY = centerY + Math.cos(t * 0.8) * driftRangeY + Math.sin(t * 1.5) * (driftRangeY * 0.4);
 
-        targetRadius = BASE_RADIUS * 0.95 + Math.sin(t * 2.2) * 12;
+        targetRadius = baseRadius * 0.95 + Math.sin(t * 2.2) * (width < 640 ? 8 : 12);
       } else {
         // Active pointer calculation with momentum
         const dx = state.pointerX - state.prevPointerX;
@@ -179,7 +193,7 @@ export const LiquidReveal: React.FC<LiquidRevealProps> = ({
         const speed = Math.sqrt(dx * dx + dy * dy);
 
         // Dynamic radius scales with pointer speed
-        targetRadius = Math.min(MAX_RADIUS, BASE_RADIUS + speed * 1.4);
+        targetRadius = Math.min(maxRadius, baseRadius + speed * 1.2);
 
         // Store current pointer as previous for next delta calculation
         state.prevPointerX = state.pointerX;
@@ -200,8 +214,8 @@ export const LiquidReveal: React.FC<LiquidRevealProps> = ({
         const curr = state.trail[i];
 
         // Fluid organic sinusoidal ripple along the tail
-        const waveX = Math.sin(timeSec * 4.2 + i * 1.1) * (2.8 * (i / TRAIL_LENGTH));
-        const waveY = Math.cos(timeSec * 3.8 + i * 0.9) * (2.8 * (i / TRAIL_LENGTH));
+        const waveX = Math.sin(timeSec * 4.2 + i * 1.1) * (2.4 * (i / TRAIL_LENGTH));
+        const waveY = Math.cos(timeSec * 3.8 + i * 0.9) * (2.4 * (i / TRAIL_LENGTH));
 
         const followLerp = isIdle ? 0.09 : 0.32;
         curr.x += (prev.x + waveX - curr.x) * followLerp;
@@ -214,7 +228,6 @@ export const LiquidReveal: React.FC<LiquidRevealProps> = ({
       }
 
       // 3. Build CSS radial gradient mask strings
-      // We create multi-stop radial gradient masks to progressively erase the top base layer
       const maskGradients: string[] = [];
       const fringeGradients: string[] = [];
 
@@ -222,13 +235,10 @@ export const LiquidReveal: React.FC<LiquidRevealProps> = ({
         const node = state.trail[i];
         const r = Math.max(4, node.radius);
         
-        // Liquid soft falloff stops:
-        // Center is fully transparent (erases base, shows chrome underneath)
-        // Edge transitions smoothly to black (base image remains visible)
         const rCore = (r * 0.75).toFixed(1);
         const rMid = (r * 1.05).toFixed(1);
-        const rSoft = (r + 26).toFixed(1);
-        const rEnd = (r + 58).toFixed(1);
+        const rSoft = (r + 22).toFixed(1);
+        const rEnd = (r + 48).toFixed(1);
 
         const x = node.x.toFixed(1);
         const y = node.y.toFixed(1);
@@ -239,10 +249,10 @@ export const LiquidReveal: React.FC<LiquidRevealProps> = ({
 
         // Chromatic fringe ring gradient (visible mainly around primary nodes)
         if (i < 3) {
-          const ringInner = Math.max(0, r - 6).toFixed(1);
+          const ringInner = Math.max(0, r - 5).toFixed(1);
           const ringCore = r.toFixed(1);
-          const ringOuter = (r + 9).toFixed(1);
-          const ringFade = (r + 20).toFixed(1);
+          const ringOuter = (r + 8).toFixed(1);
+          const ringFade = (r + 18).toFixed(1);
 
           fringeGradients.push(
             `radial-gradient(circle at ${x}px ${y}px, transparent 0px, transparent ${ringInner}px, black ${ringCore}px, black ${ringOuter}px, transparent ${ringFade}px)`
@@ -293,11 +303,10 @@ export const LiquidReveal: React.FC<LiquidRevealProps> = ({
       onPointerMove={handlePointerMove}
       onPointerEnter={handlePointerEnter}
       onPointerLeave={handlePointerLeave}
-      className={`relative w-full h-full overflow-hidden select-none touch-none ${className}`}
-      style={{ touchAction: 'none' }}
+      className={`relative w-full h-full overflow-hidden select-none ${className}`}
       aria-label="Interactive liquid reveal portrait showcasing human and chrome helmet versions"
     >
-      {/* 1. BOTTOM LAYER: Chrome Helmeted Version (Visible under the liquid tear) */}
+      {/* 1. BOTTOM LAYER: Chrome Helmeted Version */}
       <div className="absolute inset-0 z-0 bg-[#08080a]">
         <img
           src={chromeImageSrc}
@@ -316,7 +325,7 @@ export const LiquidReveal: React.FC<LiquidRevealProps> = ({
         <div
           ref={chromaticRedRef}
           aria-hidden="true"
-          className="absolute inset-0 z-[5] pointer-events-none mix-blend-screen opacity-65 translate-x-[2px] filter drop-shadow(0 0 4px rgba(239, 68, 68, 0.4))"
+          className="absolute inset-0 z-[5] pointer-events-none mix-blend-screen opacity-60 translate-x-[1.5px] filter drop-shadow(0 0 3px rgba(239, 68, 68, 0.4))"
         >
           <img
             src={chromeImageSrc}
@@ -332,7 +341,7 @@ export const LiquidReveal: React.FC<LiquidRevealProps> = ({
         <div
           ref={chromaticBlueRef}
           aria-hidden="true"
-          className="absolute inset-0 z-[6] pointer-events-none mix-blend-screen opacity-65 -translate-x-[2px] filter drop-shadow(0 0 4px rgba(6, 182, 212, 0.4))"
+          className="absolute inset-0 z-[6] pointer-events-none mix-blend-screen opacity-60 -translate-x-[1.5px] filter drop-shadow(0 0 3px rgba(6, 182, 212, 0.4))"
         >
           <img
             src={chromeImageSrc}
@@ -372,7 +381,7 @@ export const LiquidReveal: React.FC<LiquidRevealProps> = ({
 
       {/* Interactive Liquid Cue Pill */}
       <div 
-        className={`absolute bottom-6 right-6 z-[16] transition-all duration-500 hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/10 backdrop-blur-md bg-black/40 text-[11px] font-mono tracking-wider text-zinc-400 ${
+        className={`absolute bottom-6 right-6 z-[16] transition-all duration-500 hidden md:flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/10 backdrop-blur-md bg-black/40 text-[11px] font-mono tracking-wider text-zinc-400 ${
           isInteracting ? 'opacity-40 translate-y-1' : 'opacity-90 translate-y-0'
         }`}
       >

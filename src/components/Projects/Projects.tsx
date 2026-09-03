@@ -24,40 +24,40 @@ export const Projects: React.FC = () => {
   }, [projects, selectedCategory]);
 
   return (
-    <section id="work" className="relative py-28 sm:py-36 bg-[#08080a]">
+    <section id="work" className="relative py-20 sm:py-32 bg-[#08080a]">
       {/* Background radial accent */}
       <div 
-        className="absolute top-1/4 right-0 w-96 h-96 bg-amber-500/5 rounded-full blur-3xl pointer-events-none" 
+        className="absolute top-1/4 right-0 w-80 sm:w-96 h-80 sm:h-96 bg-amber-500/5 rounded-full blur-3xl pointer-events-none" 
         aria-hidden="true" 
       />
 
       <div
         ref={elementRef}
-        className={`max-w-7xl mx-auto px-6 sm:px-12 lg:px-16 transition-all duration-1000 ${
+        className={`max-w-7xl mx-auto px-4 sm:px-8 lg:px-16 transition-all duration-1000 ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}
       >
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-14">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 sm:gap-8 mb-10 sm:mb-14">
           <div>
-            <div className="flex items-center gap-2 mb-3">
-              <span className="w-8 h-[1px] bg-amber-400" />
-              <span className="font-mono text-xs font-semibold tracking-widest text-amber-400 uppercase">
+            <div className="flex items-center gap-2 mb-2 sm:mb-3">
+              <span className="w-6 sm:w-8 h-[1px] bg-amber-400" />
+              <span className="font-mono text-[11px] sm:text-xs font-semibold tracking-widest text-amber-400 uppercase">
                 02 // SELECTED WORK
               </span>
             </div>
-            <h2 className="text-3xl sm:text-5xl font-extrabold font-display tracking-tight text-white uppercase max-w-xl">
+            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold font-display tracking-tight text-white uppercase max-w-xl leading-tight">
               Featured Systems & Explorations.
             </h2>
           </div>
 
-          {/* Category Filter Tabs */}
-          <div className="flex flex-wrap gap-2 bg-[#121218] p-1.5 rounded-xl border border-white/[0.08] w-fit">
+          {/* Category Filter Tabs (Horizontal scroll on mobile with hidden scrollbar) */}
+          <div className="flex items-center gap-1.5 sm:gap-2 bg-[#121218] p-1.5 rounded-xl border border-white/[0.08] max-w-full overflow-x-auto no-scrollbar shrink-0">
             {CATEGORIES.map(cat => (
               <button
                 key={cat.id}
                 onClick={() => setSelectedCategory(cat.id)}
-                className={`px-4 py-2 rounded-lg text-xs font-mono font-medium tracking-wide transition-all duration-200 ${
+                className={`px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-lg text-xs font-mono font-medium tracking-wide transition-all duration-200 whitespace-nowrap ${
                   selectedCategory === cat.id
                     ? 'bg-amber-400 text-black shadow-md shadow-amber-400/20 font-semibold'
                     : 'text-zinc-400 hover:text-white hover:bg-white/5'
@@ -70,7 +70,7 @@ export const Projects: React.FC = () => {
         </div>
 
         {/* Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-8">
           {filteredProjects.map(project => (
             <ProjectCard
               key={project.id}

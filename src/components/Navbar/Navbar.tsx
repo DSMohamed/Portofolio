@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Menu, X, Terminal, ArrowUpRight } from 'lucide-react';
 import { useScrollSpy } from '../../hooks/useScrollSpy';
 import { usePortfolio } from '../../context/PortfolioContext';
@@ -21,6 +21,18 @@ export const Navbar: React.FC = () => {
     100
   );
 
+  // Lock body scroll when mobile menu is active
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [mobileMenuOpen]);
+
   const handleNavClick = (id: string) => {
     setMobileMenuOpen(false);
     const element = document.getElementById(id);
@@ -34,28 +46,28 @@ export const Navbar: React.FC = () => {
       <header
         className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
           hasScrolled
-            ? 'bg-[#08080a]/80 backdrop-blur-xl border-b border-white/[0.08] shadow-2xl shadow-black/50 py-3.5'
-            : 'bg-gradient-to-b from-[#08080a]/80 to-transparent backdrop-blur-[2px] py-5'
+            ? 'bg-[#08080a]/90 backdrop-blur-xl border-b border-white/[0.08] shadow-2xl shadow-black/50 py-3 sm:py-3.5'
+            : 'bg-gradient-to-b from-[#08080a]/90 to-transparent backdrop-blur-[2px] py-4 sm:py-5'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-16 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-16 flex items-center justify-between">
           
           {/* Logo / Brand */}
           <button
             onClick={() => handleNavClick('hero')}
-            className="group flex items-center gap-2.5 text-left focus:outline-none"
+            className="group flex items-center gap-2 sm:gap-2.5 text-left focus:outline-none"
             aria-label="Scroll to top"
           >
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-amber-600 to-amber-400 p-[1px] shadow-[0_0_16px_rgba(245,158,11,0.25)]">
+            <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-gradient-to-tr from-amber-600 to-amber-400 p-[1px] shadow-[0_0_16px_rgba(245,158,11,0.25)]">
               <div className="w-full h-full bg-[#08080a] rounded-[7px] flex items-center justify-center group-hover:bg-[#121218] transition-colors">
-                <Terminal className="w-4 h-4 text-amber-400 transition-transform duration-300 group-hover:scale-110" />
+                <Terminal className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-amber-400 transition-transform duration-300 group-hover:scale-110" />
               </div>
             </div>
             <div className="flex flex-col">
-              <span className="font-display font-bold text-sm tracking-wider text-white group-hover:text-amber-300 transition-colors">
+              <span className="font-display font-bold text-xs sm:text-sm tracking-wider text-white group-hover:text-amber-300 transition-colors">
                 {personalInfo.name}
               </span>
-              <span className="text-[10px] font-mono text-zinc-400 tracking-widest uppercase">
+              <span className="text-[9px] sm:text-[10px] font-mono text-zinc-400 tracking-widest uppercase">
                 PORTFOLIO
               </span>
             </div>
@@ -118,22 +130,22 @@ export const Navbar: React.FC = () => {
         {/* Backdrop */}
         <div 
           onClick={() => setMobileMenuOpen(false)}
-          className="absolute inset-0 bg-black/85 backdrop-blur-2xl" 
+          className="absolute inset-0 bg-black/90 backdrop-blur-2xl" 
         />
 
         {/* Content */}
-        <div className="relative z-10 flex flex-col justify-between h-full pt-28 pb-12 px-8">
-          <nav className="flex flex-col gap-3" aria-label="Mobile Navigation">
+        <div className="relative z-10 flex flex-col justify-between h-full pt-24 pb-8 px-6 overflow-y-auto">
+          <nav className="flex flex-col gap-2.5 my-auto" aria-label="Mobile Navigation">
             {NAV_LINKS.map((link, idx) => {
               const isActive = activeId === link.id;
               return (
                 <button
                   key={link.id}
                   onClick={() => handleNavClick(link.id)}
-                  style={{ transitionDelay: `${idx * 40}ms` }}
-                  className={`flex items-center justify-between py-3 px-4 rounded-xl text-lg font-display tracking-wide text-left transition-all ${
+                  style={{ transitionDelay: `${idx * 30}ms` }}
+                  className={`flex items-center justify-between py-3 px-4 rounded-xl text-base font-display tracking-wide text-left transition-all active:scale-[0.98] ${
                     isActive
-                      ? 'bg-amber-500/15 border border-amber-500/30 text-amber-300'
+                      ? 'bg-amber-500/15 border border-amber-500/30 text-amber-300 font-semibold'
                       : 'text-zinc-300 hover:text-white hover:bg-white/5'
                   }`}
                 >
@@ -144,14 +156,14 @@ export const Navbar: React.FC = () => {
             })}
           </nav>
 
-          <div className="pt-6 border-t border-white/10 flex flex-col gap-4">
+          <div className="pt-6 border-t border-white/10 flex flex-col gap-3">
             <button
               onClick={() => handleNavClick('contact')}
-              className="w-full py-3.5 rounded-xl font-medium text-sm text-black bg-amber-400 hover:bg-amber-300 transition-colors text-center shadow-lg shadow-amber-400/20"
+              className="w-full py-3.5 rounded-xl font-medium text-sm text-black bg-amber-400 hover:bg-amber-300 active:scale-95 transition-all text-center shadow-lg shadow-amber-400/20"
             >
               Get In Touch
             </button>
-            <p className="text-center font-mono text-xs text-zinc-500">
+            <p className="text-center font-mono text-[11px] text-zinc-500">
               {personalInfo.availability}
             </p>
           </div>
