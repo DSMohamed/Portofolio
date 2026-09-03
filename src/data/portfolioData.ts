@@ -303,7 +303,7 @@ export const PROJECTS: Project[] = [
     longDescription: "Sytharia is an engineering studio delivering modern web platforms, automated AI pipelines, and bespoke digital software. Engineered with TanStack Start, React 19, Three.js (@react-three/fiber), Tailwind CSS v4, and Supabase. Features interactive 3D spatial canvas elements, automated client intake pipelines via N8N webhooks and Brevo transactional workflows, and sub-second global edge distribution on Cloudflare.",
     image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1200&auto=format&fit=crop",
     tags: ["TanStack Start", "React 19", "Three.js", "Tailwind CSS v4", "TypeScript", "Supabase", "N8N Automation", "Cloudflare"],
-    githubUrl: "https://github.com/DSMohamed/pixel-perfect",
+    githubUrl: "", // Proprietary agency platform
     liveUrl: "https://sytharia.com",
     highlights: [
       "Official Studio Platform: Showcasing Sytharia's full-stack web, AI automation, and custom software systems",
