@@ -150,7 +150,7 @@ const PROJECTS = [
     longDescription: "Engineered with a LangGraph multi-agent architecture and OpenRouter model routing. Features real-time audio chunk processing, participant attribution, conflict detection in action items, automated PR/issue generation, and distributed task queues.",
     image: "https://images.unsplash.com/photo-1531403009284-440f080d1e12?q=80&w=1200&auto=format&fit=crop",
     tags: ["TypeScript", "LangGraph", "OpenRouter", "React", "Node.js", "Playwright", "Vitest"],
-    githubUrl: "https://github.com/DSMohamed/Agentic-Meeting-Product-Manager-and-FollowUp-System",
+    githubUrl: "https://github.com/DSMohamed/MeetingOS",
     liveUrl: "",
     highlights: [
       "Autonomous LangGraph multi-agent pipeline for meeting synthesis",
@@ -251,25 +251,27 @@ const PROJECTS = [
     ]
   },
   {
-    id: "sytharia-generative",
-    title: "Sytharia Generative Environment",
+    id: "sytharia-agency",
+    title: "Sytharia — Creative Tech & Software Studio",
     category: "creative",
     categoryLabel: "Creative Web",
-    tagline: "Audio-reactive GLSL shader synthesis & interactive spatial canvas",
-    description: "A hardware-accelerated creative canvas combining custom WebGL shaders, procedural geometry generation, and real-time audio FFT analysis to generate generative visuals.",
-    longDescription: "Sytharia is an exploratory digital playground built for audiovisual performances. It compiles custom GLSL fragment shaders on the fly, driven by frequency analysis from Web Audio API nodes.",
+    tagline: "Full-stack engineering studio & agency platform with 3D spatial canvas, AI lead workflows & edge hydration",
+    description: "Official agency web platform for Sytharia, an engineering studio building modern web architectures, automated AI workflows (N8N, LLM agents), and custom digital software systems.",
+    longDescription: "Sytharia is an engineering studio delivering modern web platforms, automated AI pipelines, and bespoke digital software. Engineered with TanStack Start, React 19, Three.js (@react-three/fiber), Tailwind CSS v4, and Supabase. Features interactive 3D spatial canvas elements, automated client intake pipelines via N8N webhooks and Brevo transactional workflows, and sub-second global edge distribution on Cloudflare.",
     image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1200&auto=format&fit=crop",
-    tags: ["WebGL", "Three.js", "GLSL", "React", "TypeScript", "Web Audio API", "Tailwind"],
+    tags: ["TanStack Start", "React 19", "Three.js", "Tailwind CSS v4", "TypeScript", "Supabase", "N8N Automation", "Cloudflare"],
     githubUrl: "https://github.com/DSMohamed/pixel-perfect",
-    liveUrl: "",
+    liveUrl: "https://sytharia.com",
     highlights: [
-      "Real-time 60fps procedural raymarching on GPU",
-      "Dynamic audio reactive parameter routing",
-      "Lossless 4K canvas export engine"
+      "Official Studio Platform: Showcasing Sytharia's full-stack web, AI automation, and custom software systems",
+      "Modern Frontend Architecture: Built with TanStack Start, React 19 full-stack routing, and Three.js 3D canvas",
+      "Automated Lead Intelligence: Integrated N8N webhook pipelines and Brevo workflows connected to Supabase",
+      "Global Edge Performance: Deployed on Cloudflare with instant edge SSR hydration and sub-second load times"
     ],
     metrics: [
-      { label: "FPS", value: "60 FPS" },
-      { label: "Shader Pass", value: "Multi-buffer" }
+      { label: "Platform", value: "Agency Studio" },
+      { label: "Domain", value: "sytharia.com" },
+      { label: "Framework", value: "TanStack Start" }
     ]
   }
 ];
