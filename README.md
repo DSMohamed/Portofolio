@@ -20,7 +20,7 @@ An editorial, futuristic, single-page developer portfolio centered around an int
 ## ✨ Features
 
 ### 💧 Signature Hero & Liquid Reveal Engine
-- **Pixel-Aligned Layering**: Dual-layer portrait framing (`base.png` on top, `chrome.png` underneath).
+- **Pixel-Aligned Layering**: Dual-layer portrait framing (`base.png` on top, `chrome.jpg` underneath).
 - **Physics-Driven Easing**: `pointermove` tracking + `requestAnimationFrame` per-frame lerp interpolation for silky 60fps interaction across desktop, tablet, and touch screens.
 - **Organic Liquid Tail & Momentum**: Trailing nodes with dynamic speed-based radius expansion and fluid ripples.
 - **Chromatic Aberration Fringe**: Subtle $+1.5\text{px}$ red / $-1.5\text{px}$ cyan RGB channel offset along the liquid tear boundary.
@@ -101,10 +101,10 @@ You can access the Admin CMS Dashboard using any of the following methods:
 To use your own portraits for the Liquid Reveal effect:
 1. Prepare two pixel-aligned images with identical framing and dimensions:
    - `base.png`: Normal human portrait
-   - `chrome.png`: Futuristic / augmented / helmeted portrait
+   - `chrome.jpg`: Futuristic / augmented / helmeted portrait
 2. Place both images into the `public/` directory:
    - `public/base.png`
-   - `public/chrome.png`
+   - `public/chrome.jpg`
 3. Restart or refresh your dev server.
 
 ---
@@ -114,7 +114,7 @@ To use your own portraits for the Liquid Reveal effect:
 ```
 ├── public/
 │   ├── base.png             # Normal portrait
-│   ├── chrome.png           # Chrome / helmet portrait
+│   ├── chrome.jpg           # Chrome / helmet portrait
 │   └── vite.svg             # Favicon
 ├── src/
 │   ├── components/

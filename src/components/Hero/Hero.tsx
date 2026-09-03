@@ -18,26 +18,26 @@ export const Hero: React.FC<HeroProps> = () => {
   };
 
   return (
-    <section 
-      id="hero" 
+    <section
+      id="hero"
       className="relative w-full h-[100svh] min-h-[580px] sm:min-h-[650px] overflow-hidden bg-[#08080a] flex items-end justify-start"
       aria-label="Hero Section"
     >
       {/* 1. Liquid Reveal Background Canvas */}
       <div className="absolute inset-0 z-0">
-        <LiquidReveal baseImageSrc="/base.png" chromeImageSrc="/chrome.png" />
+        <LiquidReveal baseImageSrc="/base.png" chromeImageSrc="/chrome.jpg" />
       </div>
 
       {/* 2. Ambient Grid & Overlay Pattern */}
-      <div 
+      <div
         className="absolute inset-0 z-10 pointer-events-none bg-[radial-gradient(#ffffff08_1px,transparent_1px)] [background-size:24px_24px] opacity-40"
-        aria-hidden="true" 
+        aria-hidden="true"
       />
 
       {/* 3. Hero Typography & Content Overlay in the Bottom-Left */}
       <div className="relative z-20 w-full max-w-7xl mx-auto px-4 sm:px-8 lg:px-16 pb-16 sm:pb-24 lg:pb-24 pointer-events-none">
         <div className="max-w-2xl text-left">
-          
+
           {/* Eyebrow badge with status indicator */}
           <div className="inline-flex items-center gap-2 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full border border-white/15 bg-black/60 backdrop-blur-md mb-3 sm:mb-4 pointer-events-auto shadow-lg shadow-black/40">
             <span className="relative flex h-2 w-2">
@@ -86,7 +86,7 @@ export const Hero: React.FC<HeroProps> = () => {
       {/* 4. Bottom HUD Telemetry Status Bar */}
       <div className="absolute bottom-3 sm:bottom-6 inset-x-0 z-20 px-4 sm:px-8 lg:px-16 pointer-events-none">
         <div className="max-w-7xl mx-auto flex items-center justify-between gap-2 text-[10px] sm:text-[11px] font-mono text-zinc-400 tracking-wider">
-          
+
           <div className="hidden sm:flex items-center gap-4 bg-black/50 backdrop-blur-md px-3 py-1.5 rounded-lg border border-white/10 shadow-lg">
             <span className="flex items-center gap-1.5 text-zinc-400">
               <Terminal className="w-3.5 h-3.5 text-amber-500" />
@@ -99,7 +99,7 @@ export const Hero: React.FC<HeroProps> = () => {
             </span>
           </div>
 
-          <div 
+          <div
             onClick={() => scrollToSection('about')}
             className="pointer-events-auto cursor-pointer ml-auto flex items-center gap-1.5 sm:gap-2 bg-black/50 hover:bg-black/70 backdrop-blur-md px-3 py-1.5 rounded-lg border border-white/10 hover:border-white/25 text-zinc-400 hover:text-zinc-200 transition-all duration-200 shadow-lg"
           >

@@ -45,14 +45,14 @@ export const LiquidReveal: React.FC<LiquidRevealProps> = ({
     idleStartTime: 0,
     width: 1200,
     height: 800,
-    baseRadius: 85,
-    maxRadius: 145,
+    baseRadius: 125,
+    maxRadius: 210,
     rafId: 0,
     trail: Array.from({ length: TRAIL_LENGTH }, () => ({
       x: 600,
       y: 400,
-      radius: 85,
-      targetRadius: 85,
+      radius: 125,
+      targetRadius: 125,
       opacity: 1,
     })) as TrailNode[],
   });
@@ -129,16 +129,16 @@ export const LiquidReveal: React.FC<LiquidRevealProps> = ({
         animState.current.width = w;
         animState.current.height = h;
 
-        // Scale radius dynamically based on screen width for mobile ergonomics
+        // Expanded radius scale for bigger, more impressive fluid ripple
         if (w < 480) {
-          animState.current.baseRadius = 55;
-          animState.current.maxRadius = 95;
+          animState.current.baseRadius = 80;
+          animState.current.maxRadius = 135;
         } else if (w < 768) {
-          animState.current.baseRadius = 70;
-          animState.current.maxRadius = 120;
+          animState.current.baseRadius = 105;
+          animState.current.maxRadius = 175;
         } else {
-          animState.current.baseRadius = 85;
-          animState.current.maxRadius = 145;
+          animState.current.baseRadius = 125;
+          animState.current.maxRadius = 210;
         }
       }
     };
@@ -174,18 +174,18 @@ export const LiquidReveal: React.FC<LiquidRevealProps> = ({
       let targetRadius = baseRadius;
 
       if (isIdle) {
-        // Slow cinematic organic Lissajous drift curve when idle
+        // Organic Lissajous drift curve when idle
         const t = (now - state.idleStartTime) * 0.0009;
         const centerX = width * 0.5;
         const centerY = height * (width < 640 ? 0.38 : 0.42);
 
-        const driftRangeX = Math.min(width * 0.16, 140);
-        const driftRangeY = Math.min(height * 0.12, 100);
+        const driftRangeX = Math.min(width * 0.16, 150);
+        const driftRangeY = Math.min(height * 0.12, 110);
 
         targetX = centerX + Math.sin(t * 0.9) * driftRangeX + Math.cos(t * 1.7) * (driftRangeX * 0.35);
         targetY = centerY + Math.cos(t * 0.8) * driftRangeY + Math.sin(t * 1.5) * (driftRangeY * 0.4);
 
-        targetRadius = baseRadius * 0.95 + Math.sin(t * 2.2) * (width < 640 ? 8 : 12);
+        targetRadius = baseRadius * 0.95 + Math.sin(t * 2.2) * (width < 640 ? 10 : 16);
       } else {
         // Active pointer calculation with momentum
         const dx = state.pointerX - state.prevPointerX;
@@ -193,7 +193,7 @@ export const LiquidReveal: React.FC<LiquidRevealProps> = ({
         const speed = Math.sqrt(dx * dx + dy * dy);
 
         // Dynamic radius scales with pointer speed
-        targetRadius = Math.min(maxRadius, baseRadius + speed * 1.2);
+        targetRadius = Math.min(maxRadius, baseRadius + speed * 1.5);
 
         // Store current pointer as previous for next delta calculation
         state.prevPointerX = state.pointerX;
@@ -208,21 +208,21 @@ export const LiquidReveal: React.FC<LiquidRevealProps> = ({
       lead.targetRadius = targetRadius;
       lead.radius += (lead.targetRadius - lead.radius) * 0.18;
 
-      // 2. Progressive lerp for trailing liquid nodes
+      // 2. Progressive lerp for trailing liquid nodes with lush wave ripples
       for (let i = 1; i < TRAIL_LENGTH; i++) {
         const prev = state.trail[i - 1];
         const curr = state.trail[i];
 
         // Fluid organic sinusoidal ripple along the tail
-        const waveX = Math.sin(timeSec * 4.2 + i * 1.1) * (2.4 * (i / TRAIL_LENGTH));
-        const waveY = Math.cos(timeSec * 3.8 + i * 0.9) * (2.4 * (i / TRAIL_LENGTH));
+        const waveX = Math.sin(timeSec * 3.6 + i * 0.9) * (4.5 * (i / TRAIL_LENGTH));
+        const waveY = Math.cos(timeSec * 3.2 + i * 0.8) * (4.5 * (i / TRAIL_LENGTH));
 
         const followLerp = isIdle ? 0.09 : 0.32;
         curr.x += (prev.x + waveX - curr.x) * followLerp;
         curr.y += (prev.y + waveY - curr.y) * followLerp;
 
-        // Radius tapers along the tail
-        const scaleFactor = Math.max(0.2, 1 - (i / TRAIL_LENGTH) * 0.72);
+        // Radius tapers gracefully along the tail
+        const scaleFactor = Math.max(0.25, 1 - (i / TRAIL_LENGTH) * 0.68);
         curr.targetRadius = lead.radius * scaleFactor;
         curr.radius += (curr.targetRadius - curr.radius) * 0.16;
       }
@@ -237,8 +237,8 @@ export const LiquidReveal: React.FC<LiquidRevealProps> = ({
         
         const rCore = (r * 0.75).toFixed(1);
         const rMid = (r * 1.05).toFixed(1);
-        const rSoft = (r + 22).toFixed(1);
-        const rEnd = (r + 48).toFixed(1);
+        const rSoft = (r + 32).toFixed(1);
+        const rEnd = (r + 68).toFixed(1);
 
         const x = node.x.toFixed(1);
         const y = node.y.toFixed(1);
@@ -247,12 +247,12 @@ export const LiquidReveal: React.FC<LiquidRevealProps> = ({
           `radial-gradient(circle at ${x}px ${y}px, transparent 0px, transparent ${rCore}px, rgba(0, 0, 0, 0.25) ${rMid}px, rgba(0, 0, 0, 0.75) ${rSoft}px, black ${rEnd}px)`
         );
 
-        // Chromatic fringe ring gradient (visible mainly around primary nodes)
+        // Chromatic fringe ring gradient around primary nodes
         if (i < 3) {
-          const ringInner = Math.max(0, r - 5).toFixed(1);
+          const ringInner = Math.max(0, r - 8).toFixed(1);
           const ringCore = r.toFixed(1);
-          const ringOuter = (r + 8).toFixed(1);
-          const ringFade = (r + 18).toFixed(1);
+          const ringOuter = (r + 12).toFixed(1);
+          const ringFade = (r + 28).toFixed(1);
 
           fringeGradients.push(
             `radial-gradient(circle at ${x}px ${y}px, transparent 0px, transparent ${ringInner}px, black ${ringCore}px, black ${ringOuter}px, transparent ${ringFade}px)`
@@ -325,7 +325,7 @@ export const LiquidReveal: React.FC<LiquidRevealProps> = ({
         <div
           ref={chromaticRedRef}
           aria-hidden="true"
-          className="absolute inset-0 z-[5] pointer-events-none mix-blend-screen opacity-60 translate-x-[1.5px] filter drop-shadow(0 0 3px rgba(239, 68, 68, 0.4))"
+          className="absolute inset-0 z-[5] pointer-events-none mix-blend-screen opacity-60 translate-x-[2px] filter drop-shadow(0 0 4px rgba(239, 68, 68, 0.4))"
         >
           <img
             src={chromeImageSrc}
@@ -341,7 +341,7 @@ export const LiquidReveal: React.FC<LiquidRevealProps> = ({
         <div
           ref={chromaticBlueRef}
           aria-hidden="true"
-          className="absolute inset-0 z-[6] pointer-events-none mix-blend-screen opacity-60 -translate-x-[1.5px] filter drop-shadow(0 0 3px rgba(6, 182, 212, 0.4))"
+          className="absolute inset-0 z-[6] pointer-events-none mix-blend-screen opacity-60 -translate-x-[2px] filter drop-shadow(0 0 4px rgba(6, 182, 212, 0.4))"
         >
           <img
             src={chromeImageSrc}
