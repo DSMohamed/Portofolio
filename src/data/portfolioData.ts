@@ -424,6 +424,16 @@ export const TIMELINE: TimelineItem[] = [
     technologies: ["React", "TypeScript", "Tailwind CSS", "Supabase", "Firebase", "Paymob", "Kashier", "Capacitor", "Cloudflare Workers"]
   },
   {
+    id: "timeline-seagulls-intern",
+    role: "Software Engineering Intern",
+    organization: "Seagulls",
+    period: "2 Months",
+    location: "Cairo, Egypt",
+    badge: "Industry Internship",
+    description: "Completed an intensive 2-month software engineering internship at Seagulls. Contributed to production web development, front-end component architectures, API integration, and team agile engineering workflows.",
+    technologies: ["JavaScript", "TypeScript", "React", "HTML5", "CSS3", "REST APIs", "Git"]
+  },
+  {
     id: "timeline-3",
     role: "Software Engineering & CS50 Scholar",
     organization: "Harvard CS50 & Self-Directed Labs",
