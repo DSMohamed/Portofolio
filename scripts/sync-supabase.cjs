@@ -330,7 +330,7 @@ const TIMELINE = [
     id: "timeline-hackathon-1st",
     role: "1st Place Winner — AI Clinical RAG Hackathon",
     organization: "Orange × ITIDA × Creativa × Instant",
-    period: "2024",
+    period: "2026",
     location: "New Valley, Egypt",
     badge: "1st Place Winner 🏆",
     description: "Awarded First Place across New Valley Governorate for engineering 'Grounded Insights' (Team 'El Safe Refusal') — an evidence-bound Clinical Decision Support RAG system featuring multi-tier refusal classifiers, USPSTF clinical guideline ingestion, FastEmbed ChromaDB vector search, Groq LPU inference, and a cross-platform web/Flutter architecture clearing 83/83 audit checkpoints.",
