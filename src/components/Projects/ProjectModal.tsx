@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import { X, ExternalLink, Sparkles, CheckCircle2 } from 'lucide-react';
 import { GithubIcon } from '../common/Icons';
 import { Project } from '../../types/portfolio';
@@ -9,7 +10,7 @@ interface ProjectModalProps {
 }
 
 export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) => {
-  const modalRef = useRef<HTMLDivElement>(null);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -19,8 +20,18 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
     if (project) {
       document.body.style.overflow = 'hidden';
       window.addEventListener('keydown', handleKeyDown);
-      // Auto-focus the modal container so arrow keys and page down scroll it immediately
-      modalRef.current?.focus();
+      // Auto-focus scroll container so keyboard navigation and mouse wheel work instantly
+      const timer = setTimeout(() => {
+        if (scrollContainerRef.current) {
+          scrollContainerRef.current.scrollTop = 0;
+          scrollContainerRef.current.focus();
+        }
+      }, 50);
+      return () => {
+        clearTimeout(timer);
+        document.body.style.overflow = '';
+        window.removeEventListener('keydown', handleKeyDown);
+      };
     }
 
     return () => {
@@ -31,64 +42,66 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
 
   if (!project) return null;
 
-  return (
+  const modalContent = (
     <div
-      className="fixed inset-0 z-50 overflow-y-auto bg-black/85 backdrop-blur-xl p-3 sm:p-6 md:p-10 animate-fade-in"
+      className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-5 md:p-8 bg-black/85 backdrop-blur-md animate-fade-in"
       role="dialog"
       aria-modal="true"
       aria-labelledby="modal-title"
       onClick={onClose}
     >
-      {/* Centering Wrapper that allows full natural scrolling */}
-      <div className="min-h-full flex items-center justify-center py-4 sm:py-8 pointer-events-none">
-        
-        {/* Modal Container */}
-        <div
-          ref={modalRef}
-          tabIndex={-1}
-          onClick={e => e.stopPropagation()}
-          className="relative w-full max-w-3xl bg-[#0f0f14] border border-white/10 rounded-2xl sm:rounded-3xl shadow-2xl shadow-black/95 text-zinc-200 pointer-events-auto overflow-hidden focus:outline-none"
+      {/* Modal Container — bounded height prevents clipping on any viewport */}
+      <div
+        onClick={e => e.stopPropagation()}
+        className="relative w-full max-w-3xl max-h-[92vh] sm:max-h-[88vh] flex flex-col bg-[#0f0f14] border border-white/10 rounded-2xl sm:rounded-3xl shadow-2xl shadow-black/95 text-zinc-200 overflow-hidden"
+      >
+        {/* Floating Sticky Close Button — always accessible */}
+        <button
+          onClick={onClose}
+          className="absolute top-3 right-3 sm:top-4 sm:right-4 z-30 p-2 sm:p-2.5 rounded-full bg-black/75 hover:bg-black/95 border border-white/20 text-zinc-300 hover:text-white transition-all shadow-xl backdrop-blur-md focus:outline-none focus:ring-2 focus:ring-amber-400 active:scale-95"
+          aria-label="Close modal"
         >
-          {/* Header Image with close button */}
-          <div className="relative h-56 sm:h-72 md:h-80 w-full overflow-hidden">
+          <X className="w-4 h-4 sm:w-5 sm:h-5" />
+        </button>
+
+        {/* Scrollable Content Container — scrolls smoothly from top to bottom without clipping */}
+        <div
+          ref={scrollContainerRef}
+          tabIndex={0}
+          className="flex-1 overflow-y-auto overscroll-contain focus:outline-none scrollbar-thin scrollbar-thumb-white/20 scrollbar-track-transparent"
+        >
+          {/* Header Image with Gradient Backdrop */}
+          <div className="relative h-44 sm:h-64 md:h-72 w-full overflow-hidden bg-black/50 shrink-0">
             <img
               src={project.image}
               alt={project.title}
               className="w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0f0f14] via-black/30 to-black/50" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0f0f14] via-black/40 to-black/50" />
 
-            <button
-              onClick={onClose}
-              className="absolute top-3 right-3 sm:top-4 sm:right-4 p-2.5 rounded-full bg-black/70 hover:bg-black/90 border border-white/15 text-zinc-300 hover:text-white transition-all shadow-lg focus:outline-none focus:ring-2 focus:ring-amber-400 z-20 active:scale-95"
-              aria-label="Close modal"
-            >
-              <X className="w-5 h-5" />
-            </button>
-
-            <div className="absolute bottom-3 left-4 sm:bottom-4 sm:left-8 right-4">
-              <span className="inline-block px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full text-[10px] sm:text-xs font-mono font-medium tracking-wider bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase mb-1.5 sm:mb-2">
+            <div className="absolute bottom-3 left-4 sm:bottom-4 sm:left-6 md:left-8 right-12 sm:right-16">
+              <span className="inline-block px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full text-[10px] sm:text-xs font-mono font-medium tracking-wider bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase mb-1 sm:mb-2">
                 {project.categoryLabel}
               </span>
-              <h3 id="modal-title" className="text-xl sm:text-3xl font-bold font-display text-white leading-tight">
+              <h3 id="modal-title" className="text-lg sm:text-2xl md:text-3xl font-bold font-display text-white leading-tight">
                 {project.title}
               </h3>
             </div>
           </div>
 
           {/* Content Body */}
-          <div className="p-5 sm:p-8 space-y-5 sm:space-y-6">
-            <p className="text-sm sm:text-base text-zinc-300 font-light leading-relaxed">
+          <div className="p-4 sm:p-6 md:p-8 space-y-5 sm:space-y-6">
+            <p className="text-xs sm:text-sm md:text-base text-zinc-300 font-light leading-relaxed">
               {project.longDescription || project.description}
             </p>
 
             {/* Key Metrics if available */}
             {project.metrics && project.metrics.length > 0 && (
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4 pt-1 sm:pt-2">
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 sm:gap-4 pt-1">
                 {project.metrics.map((m, idx) => (
                   <div key={idx} className="p-3 sm:p-4 rounded-xl bg-white/[0.03] border border-white/[0.06]">
-                    <div className="text-lg sm:text-xl font-bold font-display text-amber-400">{m.value}</div>
-                    <div className="text-[10px] sm:text-xs font-mono text-zinc-400 uppercase">{m.label}</div>
+                    <div className="text-base sm:text-xl font-bold font-display text-amber-400">{m.value}</div>
+                    <div className="text-[10px] sm:text-xs font-mono text-zinc-400 uppercase tracking-wider">{m.label}</div>
                   </div>
                 ))}
               </div>
@@ -96,14 +109,14 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
 
             {/* Architectural Highlights */}
             {project.highlights && project.highlights.length > 0 && (
-              <div className="space-y-2.5 sm:space-y-3 pt-1 sm:pt-2">
+              <div className="space-y-2.5 sm:space-y-3 pt-1">
                 <h4 className="font-mono text-[11px] sm:text-xs font-semibold tracking-wider text-zinc-400 uppercase flex items-center gap-2">
                   <Sparkles className="w-3.5 h-3.5 text-amber-400 shrink-0" />
                   <span>Key Engineering Highlights</span>
                 </h4>
                 <ul className="space-y-2">
                   {project.highlights.map((h, idx) => (
-                    <li key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-zinc-300">
+                    <li key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-zinc-300 leading-normal">
                       <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
                       <span>{h}</span>
                     </li>
@@ -113,7 +126,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
             )}
 
             {/* Tech Stack Pills */}
-            <div className="space-y-2 pt-1 sm:pt-2">
+            <div className="space-y-2 pt-1">
               <h4 className="font-mono text-[11px] sm:text-xs font-semibold tracking-wider text-zinc-400 uppercase">
                 Technologies Utilized
               </h4>
@@ -121,7 +134,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
                 {project.tags.map((tag, idx) => (
                   <span
                     key={idx}
-                    className="px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-[11px] sm:text-xs font-mono text-zinc-300"
+                    className="px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-[10px] sm:text-xs font-mono text-zinc-300"
                   >
                     {tag}
                   </span>
@@ -130,14 +143,14 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
             </div>
 
             {/* Footer Action Links */}
-            <div className="pt-5 sm:pt-6 border-t border-white/10 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 sm:gap-4">
+            <div className="pt-4 sm:pt-6 border-t border-white/10 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 sm:gap-4">
               <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3">
                 {project.liveUrl && (
                   <a
                     href={project.liveUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-black font-medium text-xs sm:text-sm transition-colors shadow-lg shadow-amber-400/20 active:scale-95"
+                    className="inline-flex items-center justify-center gap-2 px-4 sm:px-5 py-2.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-black font-semibold text-xs sm:text-sm transition-colors shadow-lg shadow-amber-400/20 active:scale-95"
                   >
                     <span>Launch Live Demo</span>
                     <ExternalLink className="w-4 h-4" />
@@ -148,7 +161,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
                     href={project.githubUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 text-zinc-200 text-xs sm:text-sm font-medium transition-colors active:scale-95"
+                    className="inline-flex items-center justify-center gap-2 px-4 sm:px-5 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 text-zinc-200 text-xs sm:text-sm font-medium transition-colors active:scale-95"
                   >
                     <GithubIcon className="w-4 h-4" />
                     <span>Repository</span>
@@ -158,15 +171,16 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
 
               <button
                 onClick={onClose}
-                className="text-center text-[11px] font-mono text-zinc-400 hover:text-white transition-colors py-1"
+                className="text-center text-[11px] font-mono text-zinc-400 hover:text-white transition-colors py-1.5 focus:outline-none"
               >
                 [ Close Details ]
               </button>
             </div>
           </div>
         </div>
-
       </div>
     </div>
   );
+
+  return createPortal(modalContent, document.body);
 };
